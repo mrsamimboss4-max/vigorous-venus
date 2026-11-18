@@ -1,0 +1,70 @@
+---
+// src/pages/data-retention-policy.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Data Retention Policy — Sweepgrid" 
+  description="Data Retention & Storage Policy for Sweepgrid Windows Screenshot Organizer."
+>
+  <div class="mesh-gradient-bg"></div>
+  <div class="min-h-screen flex flex-col font-sans">
+    <Header />
+    
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-12">
+      <header class="space-y-3 border-b border-hairline pb-8 text-center max-w-3xl mx-auto">
+        <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">STORAGE & RETENTION STANDARDS</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-display-lg text-ink font-feature-geom">
+          Data Retention Policy.
+        </h1>
+        <p class="text-sm sm:text-base text-body leading-relaxed">
+          Zero remote storage. 100% user-governed local disk control.
+        </p>
+      </header>
+
+      <div class="space-y-8 max-w-4xl mx-auto text-xs sm:text-sm text-body leading-relaxed font-sans">
+        
+        <!-- 1. Zero Cloud Retention -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-500 font-mono font-bold text-xs flex items-center justify-center">1</span>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Zero Remote Retention</h2>
+          </div>
+          <p>
+            Sweepgrid does not operate remote database clusters, telemetry ingestion endpoints, or cloud backup stores for your images. Because our utility is engineered as an entirely local desktop software program, we retain zero bytes of your screenshots, file paths, folder structures, or filenames on any external server.
+          </p>
+        </div>
+
+        <!-- 2. Local Ephemeral Caching -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-500 font-mono font-bold text-xs flex items-center justify-center">2</span>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Local Ephemeral Caching</h2>
+          </div>
+          <p>
+            To achieve high-speed scrolling and instant folder previews, Sweepgrid may hold downscaled image thumbnails in your system's volatile memory (RAM) or within standard temporary application storage in your Windows user profile (<code class="font-mono text-[11px] bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">%LOCALAPPDATA%\Sweepgrid</code>).
+          </p>
+          <p>
+            These temporary thumbnail artifacts are generated locally and discarded when clearing your Windows temporary files or uninstalling the utility.
+          </p>
+        </div>
+
+        <!-- 3. Complete Data Removal -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-500 font-mono font-bold text-xs flex items-center justify-center">3</span>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Immediate Data Removal</h2>
+          </div>
+          <p>
+            Uninstalling Sweepgrid via standard Windows "Installed Apps" or the Microsoft Store immediately and permanently removes all application executables, user configuration settings, and local thumbnail caches from your device.
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

@@ -1,0 +1,32 @@
+---
+// src/components/Footer.astro
+const year = 2026;
+---
+
+<footer class="w-full border-t border-hairline bg-canvas mt-20">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-sans">
+    
+    <!-- Brand Signature & Copyright -->
+    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 text-mute text-center sm:text-left">
+      <a href="/#home" class="nav-tab-trigger flex items-center space-x-2 text-ink hover:opacity-85 transition-opacity no-underline cursor-pointer" data-target="home">
+        <span class="w-5 h-5 rounded bg-emerald-500 text-white font-bold text-[10px] flex items-center justify-center">
+          SG
+        </span>
+        <span class="font-extrabold tracking-tight text-sm font-feature-geom">Sweepgrid</span>
+      </a>
+      <span class="hidden sm:inline text-hairline-strong">|</span>
+      <span>&copy; {year} The Black Rose. All rights reserved. Built for Sweepgrid.</span>
+    </div>
+
+    <!-- Navigation links -->
+    <nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-medium text-body">
+      <a href="/#home" data-target="home" class="nav-tab-trigger hover:text-emerald-500 transition-colors no-underline cursor-pointer">Home</a>
+      <a href="/#about" data-target="about" class="nav-tab-trigger hover:text-emerald-500 transition-colors no-underline cursor-pointer">About Us</a>
+      <a href="/#help" data-target="help" class="nav-tab-trigger hover:text-emerald-500 transition-colors no-underline cursor-pointer">Help Center</a>
+      <a href="/#contact" data-target="contact" class="nav-tab-trigger hover:text-emerald-500 transition-colors no-underline cursor-pointer">Contact</a>
+      <a href="/privacy-policy" class="hover:text-emerald-500 transition-colors no-underline">Privacy Policy</a>
+      <a href="/terms" class="hover:text-emerald-500 transition-colors no-underline">Terms & Conditions</a>
+      <a href="/data-retention-policy" class="hover:text-emerald-500 transition-colors no-underline">Data Retention</a>
+    </nav>
+  </div>
+</footer>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sweepgrid — Smart Windows Screenshot & File Organizer</title>
+    <style>
+        :root {
+            --bg-color: #07090e;
+            --surface: #101522;
+            --surface-border: rgba(255, 255, 255, 0.08);
+            --accent: #10b981;
+            --accent-glow: rgba(16, 185, 129, 0.25);
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 24px 20px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: var(--accent);
+            color: #fff;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Main Container & View States */
+        .main-content {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .page-view {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out forwards;
+        }
+
+        .page-view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 60px 0 40px 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            line-height: 1.15;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--accent);
+            color: #fff;
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+            box-shadow: 0 4px 25px var(--accent-glow);
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        /* Feature Cards Grid */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-top: 60px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 32px;
+            border-radius: 16px;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 12px;
+            color: var(--text-main);
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Generic Page Styles (About, Contact, Help) */
+        .page-header {
+            margin-bottom: 40px;
+        }
+
+        .page-header h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .content-box {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 40px;
+            border-radius: 16px;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        .content-box h3 {
+            color: var(--text-main);
+            margin-top: 24px;
+            margin-bottom: 8px;
+        }
+
+        .content-box h3:first-child {
+            margin-top: 0;
+        }
+
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            background: var(--bg-color);
+            border: 1px solid var(--surface-border);
+            padding: 14px 16px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control:focus {
+            border-color: var(--accent);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--surface-border);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <a class="logo" onclick="switchPage('home')"><span>SG</span> Sweepgrid</a>
+        <div class="nav-links">
+            <a id="nav-home" class="active" onclick="switchPage('home')">Home</a>
+            <a id="nav-about" onclick="switchPage('about')">About Us</a>
+            <a id="nav-help" onclick="switchPage('help')">Help Center</a>
+            <a id="nav-contact" onclick="switchPage('contact')">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="main-content">
+
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page-view active">
+            <section class="hero">
+                <h1>Conquer Your Desktop <span>Screenshot Clutter</span></h1>
+                <p>Sweepgrid is the ultimate local utility designed for Windows to instantly preview, organize, and purge messy screenshot directories in seconds.</p>
+                <a href="https://apps.microsoft.com" target="_blank" class="btn-primary">
+                    Get it on Microsoft Store
+                </a>
+            </section>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Visual Grid Overview</h3>
+                    <p>Instantly map out chaotic folders into a clean, intuitive layout designed for rapid identification and management.</p>
+                </div>
+                <div class="card">
+                    <h3>One-Click Quick Clean</h3>
+                    <p>Effortlessly purge unwanted captures and reclaim valuable local disk space without wading through complex menus.</p>
+                </div>
+                <div class="card">
+                    <h3>100% Private & Local</h3>
+                    <p>Runs entirely offline on your machine. Your personal captures never touch external cloud servers or tracking pipelines.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ABOUT US PAGE -->
+        <div id="page-about" class="page-view">
+            <div class="page-header">
+                <h2>About Sweepgrid</h2>
+                <p>Engineered by The Black Rose for clean, lightning-fast local workspace management.</p>
+            </div>
+            <div class="content-box">
+                <h3>Our Mission</h3>
+                <p>Modern workflows generate hundreds of accidental screenshots, temporary image snippets, and desktop clutter. Sweepgrid was built out of a desire for a native, lightning-fast utility that puts users back in complete control of their storage without heavy background bloatware.</p>
+                
+                <h3>Built for Windows</h3>
+                <p>Optimized specifically for Windows architecture using high-performance modern UI frameworks, Sweepgrid delivers a seamless experience that respects your system resources and file privacy.</p>
+            </div>
+        </div>
+
+        <!-- HELP CENTER PAGE -->
+        <div id="page-help" class="page-view">
+            <div class="page-header">
+                <h2>Help & Support</h2>
+                <p>Quick answers and troubleshooting guides for Sweepgrid.</p>
+            </div>
+            <div class="content-box">
+                <h3>How do I select custom screenshot directories?</h3>
+                <p>Upon launching Sweepgrid, click the folder picker icon in the upper navigation bar to target any directory on your local drives containing your image captures.</p>
+
+                <h3>Is my data uploaded to the cloud?</h3>
+                <p>No. Sweepgrid is an entirely local desktop utility. All scanning, sorting, and deletions happen directly on your local storage.</p>
+
+                <h3>Where can I report bugs or suggest features?</h3>
+                <p>You can reach out directly via the Contact page or submit issues through our official developer channels.</p>
+            </div>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="page-contact" class="page-view">
+            <div class="page-header">
+                <h2>Get in Touch</h2>
+                <p>Have questions, feedback, or feature requests? Drop us a message.</p>
+            </div>
+            <div class="content-box" style="background: var(--surface);">
+                <form onsubmit="event.preventDefault(); alert('Message simulated successfully! We will get back to you soon.');">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" class="form-control" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Your Email Address</label>
+                        <input type="email" class="form-control" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea class="form-control" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 The Black Rose. All rights reserved. Built for Sweepgrid.
+    </footer>
+
+    <!-- Simple SPA View Switcher Script -->
+    <script>
+        function switchPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-view').forEach(page => {
+                page.classList.remove('active');
+            });
+            // Remove active class from nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            // Show target page
+            document.getElementById('page-' + pageId).classList.add('active');
+            // Highlight nav link
+            document.getElementById('nav-' + pageId).classList.add('active');
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

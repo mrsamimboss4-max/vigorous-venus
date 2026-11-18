@@ -1,0 +1,87 @@
+---
+// src/components/Toast.astro
+---
+<!-- Toast Notifications Container -->
+<div 
+  id="toast-container" 
+  class="fixed bottom-6 right-6 z-[99999] flex flex-col gap-2.5 max-w-sm w-[90vw] sm:w-full pointer-events-none"
+>
+  <!-- Toasts will be injected here dynamically -->
+</div>
+
+<script is:inline>
+  (function() {
+    window.addEventListener('show-toast', (e) => {
+      const container = document.getElementById('toast-container');
+      if (!container) return;
+
+      const detail = e.detail || {};
+      const message = detail.message || 'Notification';
+      const type = detail.type || 'info'; // 'success' | 'error' | 'info' | 'warning'
+
+      const toast = document.createElement('div');
+      
+      const isError = type === 'error';
+      const isSuccess = type === 'success';
+
+      const bgClass = isError 
+        ? 'bg-ink text-canvas border-red-500/50 shadow-level-4' 
+        : isSuccess 
+          ? 'bg-ink text-canvas border-emerald-500/50 shadow-level-4' 
+          : 'bg-ink text-canvas border-hairline shadow-level-4';
+
+      const icon = isError ? '⚠️' : isSuccess ? '✅' : 'ℹ️';
+
+      toast.className = `pointer-events-auto flex items-center justify-between gap-3 px-4 py-3 rounded-md border text-xs font-sans font-medium transition-all duration-300 animate-fadeIn cursor-pointer ${bgClass}`;
+      
+      toast.innerHTML = `
+        <div class="flex items-center space-x-2.5 min-w-0 flex-1">
+          <span class="text-sm shrink-0">${icon}</span>
+          <span class="leading-snug break-words">${message}</span>
+        </div>
+        <button type="button" class="shrink-0 text-mute hover:text-canvas text-sm font-bold ml-2">✕</button>
+      `;
+
+      let isDismissed = false;
+      const removeToast = () => {
+        if (isDismissed) return;
+        isDismissed = true;
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+          if (toast.parentNode) {
+            toast.parentNode.removeChild(toast);
+          }
+        }, 200);
+      };
+
+      // Click or touch directly on the toast dismisses it
+      toast.addEventListener('click', (evt) => {
+        evt.stopPropagation();
+        removeToast();
+      });
+      toast.addEventListener('touchend', (evt) => {
+        evt.stopPropagation();
+        removeToast();
+      });
+
+      // Auto vanish after 5 seconds
+      const autoTimer = setTimeout(removeToast, 5000);
+
+      // Vanish when touched anywhere on the screen
+      const globalDismiss = () => {
+        clearTimeout(autoTimer);
+        removeToast();
+        document.removeEventListener('click', globalDismiss);
+        document.removeEventListener('touchend', globalDismiss);
+      };
+
+      setTimeout(() => {
+        document.addEventListener('click', globalDismiss, { once: true });
+        document.addEventListener('touchend', globalDismiss, { once: true });
+      }, 100);
+
+      container.appendChild(toast);
+    });
+  })();
+</script>

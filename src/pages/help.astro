@@ -1,0 +1,94 @@
+---
+// src/pages/help.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: "How do I select custom screenshot directories?",
+    a: "Upon launching Sweepgrid, click the folder picker icon in the upper navigation bar to target any directory on your local drives containing your image captures. Sweepgrid remembers your favorite directories between sessions for quick access."
+  },
+  {
+    q: "Is my data uploaded to the cloud?",
+    a: "No. Sweepgrid is an entirely local desktop utility. All scanning, sorting, thumbnail generation, and deletions happen directly on your local storage. Your personal captures never touch external cloud servers or tracking pipelines."
+  },
+  {
+    q: "Where can I report bugs or suggest features?",
+    a: "You can reach out directly via our Contact page or submit issues through our official developer channels. Feedback from daily users drives every single Sweepgrid release."
+  },
+  {
+    q: "Where does Windows save screenshots by default?",
+    a: "Windows typically saves captures made via Win + PrtScn or the Windows Snipping Tool in C:\\Users\\<Username>\\Pictures\\Screenshots. Sweepgrid automatically detects and pre-loads this directory upon first launch."
+  },
+  {
+    q: "Are deleted screenshots recoverable if I make a mistake?",
+    a: "Yes. By default, Sweepgrid sends deleted files to the native Windows Recycle Bin rather than permanently shredding them. You can easily open the Recycle Bin to restore any image should you change your mind."
+  },
+  {
+    q: "Which file formats does Sweepgrid support?",
+    a: "Sweepgrid scans and renders all standard Windows capture formats, including PNG, JPEG, JPG, WEBP, BMP, and animated GIFs, with instantaneous thumbnail caching."
+  }
+];
+---
+
+<Layout 
+  title="Help & Support — Sweepgrid" 
+  description="Quick answers, FAQs, and troubleshooting guides for Sweepgrid Windows Screenshot Organizer."
+>
+  <div class="mesh-gradient-bg"></div>
+  <div class="min-h-screen flex flex-col font-sans">
+    <Header currentView="help" />
+
+    <main class="flex-1 max-w-4xl w-full mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-12 animate-fadeIn">
+      <!-- Breadcrumb navigation -->
+      <div class="flex items-center space-x-2 text-xs font-mono text-mute">
+        <a href="/#home" class="hover:text-ink transition-colors no-underline text-mute">Home</a>
+        <span>/</span>
+        <span class="text-ink font-semibold">Help Center</span>
+      </div>
+
+      <!-- Header Section -->
+      <header class="space-y-3 border-b border-hairline pb-8 text-center max-w-2xl mx-auto">
+        <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">DOCUMENTATION & SUPPORT</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-display-lg text-ink font-feature-geom">
+          Help & Support.
+        </h1>
+        <p class="text-sm sm:text-base text-body leading-relaxed">
+          Quick answers and troubleshooting guides for Sweepgrid.
+        </p>
+      </header>
+
+      <!-- FAQ List -->
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
+            <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
+              <span class="text-emerald-500 font-mono text-xs mt-0.5">Q{index + 1}.</span>
+              <span>{faq.q}</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
+              {faq.a}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Contact Support Banner -->
+      <div class="p-8 rounded-2xl bg-canvas border border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 shadow-level-2">
+        <div class="space-y-1 text-center sm:text-left">
+          <h4 class="text-base font-bold text-ink font-feature-geom">Need additional assistance?</h4>
+          <p class="text-xs text-body">Our team is here to help with bug reports or custom feature requests.</p>
+        </div>
+        <a 
+          href="/#contact" 
+          class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs transition-colors no-underline shadow-sm shrink-0"
+        >
+          Contact Our Team
+        </a>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

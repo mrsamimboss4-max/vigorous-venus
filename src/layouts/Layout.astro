@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+import Toast from '../components/Toast.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const { 
+	title = "Sweepgrid — Smart Windows Screenshot & File Organizer", 
+	description = "Sweepgrid is the ultimate local utility designed for Windows to instantly preview, organize, and purge messy screenshot directories in seconds."
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Theme Initialization Script -->
+		<script is:inline>
+			(function() {
+				const savedTheme = localStorage.getItem('sweepgrid-theme');
+				const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+				if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+					document.documentElement.classList.add('dark');
+				} else {
+					document.documentElement.classList.remove('dark');
+				}
+			})();
+		</script>
+		
+		<!-- SEO Meta Tags -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content="Sweepgrid, Windows screenshot organizer, screenshot cleaner, desktop file organizer, purge screenshots, Windows utility, The Black Rose, local file manager, private screenshot tool" />
+		<link rel="canonical" href={`https://sweepgrid.com${Astro.url.pathname}`} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={`https://sweepgrid.com${Astro.url.pathname}`} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content="https://sweepgrid.com/og-image.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={`https://sweepgrid.com${Astro.url.pathname}`} />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content="https://sweepgrid.com/og-image.png" />
+		
+		<!-- Google Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-CYW16TF51H"></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-CYW16TF51H');
+		</script>
+	</head>
+	<body class="font-sans antialiased text-ink bg-canvas-soft font-feature-geom min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+		<slot />
+
+		<!-- Global Toast Container -->
+		<Toast />
+	</body>
+</html>

@@ -1,0 +1,69 @@
+---
+// src/pages/terms.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Terms & Conditions — Sweepgrid" 
+  description="Terms and conditions of use for Sweepgrid Windows Screenshot & File Organizer."
+>
+  <div class="mesh-gradient-bg"></div>
+  <div class="min-h-screen flex flex-col font-sans">
+    <Header />
+    
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-12">
+      <header class="space-y-3 border-b border-hairline pb-8 text-center max-w-3xl mx-auto">
+        <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">LICENSING & AGREEMENTS</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-display-lg text-ink font-feature-geom">
+          Terms & Conditions.
+        </h1>
+        <p class="text-sm sm:text-base text-body leading-relaxed">
+          Please review the terms of service governing the use of Sweepgrid software and website.
+        </p>
+      </header>
+
+      <div class="space-y-8 max-w-4xl mx-auto text-xs sm:text-sm text-body leading-relaxed font-sans">
+        
+        <!-- 1. Acceptance of Terms -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">1. Acceptance of Terms</h2>
+          <p>
+            By downloading, installing, or accessing <strong>Sweepgrid</strong> (the "Software"), provided by <strong>The Black Rose</strong>, you agree to comply with and be bound by these Terms and Conditions. If you do not agree to these terms, please discontinue using the Software immediately.
+          </p>
+        </div>
+
+        <!-- 2. Software License & Scope -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">2. End-User License Agreement</h2>
+          <p>
+            We grant you a personal, revocable, non-exclusive, non-transferable license to install and run Sweepgrid on Windows devices owned or controlled by you in accordance with the Microsoft Store Terms of Sale and distribution guidelines.
+          </p>
+          <p>
+            You agree not to decompile, reverse engineer, disassemble, decrypt, or create derivative works from the application binaries, except where permitted by applicable local law.
+          </p>
+        </div>
+
+        <!-- 3. Local File Operations & User Responsibility -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">3. File Operations & Local Deletions</h2>
+          <p>
+            Sweepgrid is designed to assist you in managing local disk storage by facilitating the preview and deletion of image captures. All file operations initiated by the user are executed directly on the local operating system. While Sweepgrid employs safe deletion techniques utilizing the Windows Recycle Bin, you remain solely responsible for reviewing and confirming the files you choose to delete.
+          </p>
+        </div>
+
+        <!-- 4. Warranty & Liability -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">4. Disclaimer of Warranties & Limitation of Liability</h2>
+          <p>
+            Sweepgrid is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, whether express or implied. In no event shall The Black Rose be liable for any indirect, incidental, or consequential damages resulting from the use or inability to use the Software.
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

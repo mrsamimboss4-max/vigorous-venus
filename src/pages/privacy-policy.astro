@@ -1,0 +1,69 @@
+---
+// src/pages/privacy-policy.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Privacy Policy — Sweepgrid" 
+  description="Read the privacy policy for Sweepgrid: 100% private, local Windows screenshot and file organizer utility by The Black Rose."
+>
+  <div class="mesh-gradient-bg"></div>
+  <div class="min-h-screen flex flex-col font-sans">
+    <Header />
+    
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-12">
+      <header class="space-y-3 border-b border-hairline pb-8 text-center max-w-3xl mx-auto">
+        <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">LEGAL & PRIVACY ASSURANCE</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-display-lg text-ink font-feature-geom">
+          Privacy Policy.
+        </h1>
+        <p class="text-sm sm:text-base text-body leading-relaxed">
+          Your files never leave your computer. Learn how Sweepgrid protects your privacy by design.
+        </p>
+      </header>
+
+      <div class="space-y-8 max-w-4xl mx-auto text-xs sm:text-sm text-body leading-relaxed font-sans">
+        
+        <!-- 1. Local-First Architecture -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">1. 100% Offline & Local-First Processing</h2>
+          <p>
+            At <strong>Sweepgrid</strong> (engineered by The Black Rose), we believe your personal files, work documents, and desktop captures belong exclusively to you. Sweepgrid operates entirely as an offline, client-side utility on your Windows operating system.
+          </p>
+          <p>
+            When you scan folders, generate thumbnails, or delete files, all computations occur exclusively on your local CPU and drive. No screenshot data, image previews, folder paths, or system metadata are ever transmitted to external cloud servers or remote databases.
+          </p>
+        </div>
+
+        <!-- 2. Zero Telemetry & Tracking -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">2. Zero Telemetry & Ad Tracking</h2>
+          <p>
+            Sweepgrid contains zero third-party advertising SDKs, diagnostic sniffers, or user tracking cookies. We do not build demographic profiles, monitor file names, or track your workflow habits. You can use Sweepgrid completely disconnected from the internet without any loss of functionality.
+          </p>
+        </div>
+
+        <!-- 3. Safe Deletion & Recycle Bin -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">3. File Handling & Recycle Bin Safety</h2>
+          <p>
+            Sweepgrid only accesses directories you explicitly authorize or standard Windows screenshot capture paths. When performing cleanup operations, Sweepgrid calls native Windows Shell deletion APIs that direct files into your <strong>Windows Recycle Bin</strong> by default, ensuring you retain the ability to recover any accidentally selected captures.
+          </p>
+        </div>
+
+        <!-- 4. Contact & Inquiries -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <h2 class="text-lg font-bold text-ink font-feature-geom">4. Questions & Developer Inquiries</h2>
+          <p>
+            If you have questions regarding this Privacy Policy or software architecture, you may contact the development team at any time via our <a href="/contact" class="text-emerald-500 font-semibold hover:underline">Contact Page</a>.
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>

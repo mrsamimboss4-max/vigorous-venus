@@ -1,0 +1,378 @@
+@import "tailwindcss";
+
+:root {
+  --color-primary: #171717;
+  --color-on-primary: #ffffff;
+  --color-ink: #171717;
+  --color-body: #4d4d4d;
+  --color-mute: #888888;
+  --color-hairline: #ebebeb;
+  --color-hairline-strong: #a1a1a1;
+  --color-canvas: #ffffff;
+  --color-canvas-soft: #fafafa;
+  --color-canvas-soft-2: #f5f5f5;
+  --color-link: #0070f3;
+  --color-link-deep: #0761d1;
+  --color-link-bg-soft: #d3e5ff;
+  --color-success: #0070f3;
+  --color-error: #ee0000;
+  --color-error-soft: #f7d4d6;
+  --color-error-deep: #c50000;
+  --color-warning: #f5a623;
+  --color-warning-soft: #ffefcf;
+  --color-warning-deep: #ab570a;
+  --color-violet: #7928ca;
+  --color-violet-soft: #d8ccf1;
+  --color-violet-deep: #4c2889;
+  --color-cyan: #50e3c2;
+  --color-cyan-soft: #aaffec;
+  --color-cyan-deep: #29bc9b;
+  --color-highlight-pink: #ff0080;
+  --color-highlight-magenta: #eb367f;
+}
+
+.dark {
+  --color-primary: #ffffff;
+  --color-on-primary: #171717;
+  --color-ink: #ffffff;
+  --color-body: #a1a1a1;
+  --color-mute: #555555;
+  --color-hairline: #222222;
+  --color-hairline-strong: #444444;
+  --color-canvas: #0a0a0a;
+  --color-canvas-soft: #000000;
+  --color-canvas-soft-2: #141414;
+  --color-link: #3291ff;
+  --color-link-deep: #52a1ff;
+  --color-link-bg-soft: #112244;
+  --color-success: #0070f3;
+  --color-error: #ff4d4d;
+  --color-error-soft: #2d1617;
+  --color-error-deep: #ff4d4d;
+  --color-warning: #f7b955;
+  --color-warning-soft: #2b2211;
+  --color-warning-deep: #f5a623;
+  --color-violet: #8a3ffc;
+  --color-violet-soft: #23123a;
+  --color-violet-deep: #a27eff;
+  --color-cyan: #29bc9b;
+  --color-cyan-soft: #0e2f29;
+  --color-cyan-deep: #50e3c2;
+  --color-highlight-pink: #ff0080;
+  --color-highlight-magenta: #eb367f;
+}
+
+@theme {
+  /* Vercel Design System Colors Mapped to Variables */
+  --color-primary: var(--color-primary);
+  --color-on-primary: var(--color-on-primary);
+  --color-ink: var(--color-ink);
+  --color-body: var(--color-body);
+  --color-mute: var(--color-mute);
+  --color-hairline: var(--color-hairline);
+  --color-hairline-strong: var(--color-hairline-strong);
+  --color-canvas: var(--color-canvas);
+  --color-canvas-soft: var(--color-canvas-soft);
+  --color-canvas-soft-2: var(--color-canvas-soft-2);
+  --color-link: var(--color-link);
+  --color-link-deep: var(--color-link-deep);
+  --color-link-bg-soft: var(--color-link-bg-soft);
+  --color-success: var(--color-success);
+  --color-error: var(--color-error);
+  --color-error-soft: var(--color-error-soft);
+  --color-error-deep: var(--color-error-deep);
+  --color-warning: var(--color-warning);
+  --color-warning-soft: var(--color-warning-soft);
+  --color-warning-deep: var(--color-warning-deep);
+  --color-violet: var(--color-violet);
+  --color-violet-soft: var(--color-violet-soft);
+  --color-violet-deep: var(--color-violet-deep);
+  --color-cyan: var(--color-cyan);
+  --color-cyan-soft: var(--color-cyan-soft);
+  --color-cyan-deep: var(--color-cyan-deep);
+  --color-highlight-pink: var(--color-highlight-pink);
+  --color-highlight-magenta: var(--color-highlight-magenta);
+
+  /* Brand Gradient Stops */
+  --color-develop-start: #007cf0;
+  --color-develop-end: #00dfd8;
+  --color-preview-start: #7928ca;
+  --color-preview-end: #ff0080;
+  --color-ship-start: #ff4d4d;
+  --color-ship-end: #f9cb28;
+
+  /* Fonts */
+  --font-sans: "Inter", "Geist", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+
+  /* Radius Scale */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-pill-sm: 64px;
+  --radius-pill: 100px;
+
+  /* Width Breakpoints & Max Widths */
+  --width-xs: 20rem;
+  --width-sm: 24rem;
+  --width-md: 28rem;
+  --width-lg: 32rem;
+  --width-xl: 36rem;
+  --width-2xl: 42rem;
+  --width-3xl: 48rem;
+  --width-4xl: 56rem;
+  --width-5xl: 64rem;
+  --width-6xl: 72rem;
+  --width-7xl: 80rem;
+
+  /* Elevation Shadows (with inset hairline rings for sharpness) */
+  --shadow-level-1: 0 0 0 1px var(--color-hairline) inset;
+  --shadow-level-2: 0 0 0 1px var(--color-hairline) inset, 0 1px 1px rgba(0, 0, 0, 0.03), 0 2px 2px rgba(0, 0, 0, 0.05);
+  --shadow-level-3: 0 0 0 1px var(--color-hairline) inset, 0 2px 2px rgba(0, 0, 0, 0.05), 0 8px 8px -8px rgba(0, 0, 0, 0.05);
+  --shadow-level-4: 0 0 0 1px var(--color-hairline) inset, 0 2px 2px rgba(0, 0, 0, 0.05), 0 8px 16px -4px rgba(0, 0, 0, 0.06);
+  --shadow-level-5: 0 0 0 1px var(--color-hairline) inset, 0 1px 1px rgba(0, 0, 0, 0.03), 0 8px 16px -4px rgba(0, 0, 0, 0.06), 0 24px 32px -8px rgba(0, 0, 0, 0.08);
+}
+
+/* Base style resets and configuration */
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--color-canvas-soft);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+/* Custom Mesh Gradient Hero Background */
+.mesh-gradient-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 500px;
+  background-image:
+    radial-gradient(at 10% 20%, rgba(80, 227, 194, 0.08) 0px, transparent 45%),
+    radial-gradient(at 90% 10%, rgba(0, 124, 240, 0.06) 0px, transparent 50%),
+    radial-gradient(at 50% 90%, rgba(121, 40, 202, 0.05) 0px, transparent 40%),
+    radial-gradient(at 80% 80%, rgba(255, 0, 128, 0.04) 0px, transparent 35%),
+    radial-gradient(at 20% 80%, rgba(255, 77, 77, 0.04) 0px, transparent 35%);
+  filter: blur(60px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Glassmorphism utility for floating details */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Negative letter spacing values for Display headings */
+.tracking-display-xl {
+  letter-spacing: -2.4px;
+}
+
+.tracking-display-lg {
+  letter-spacing: -1.28px;
+}
+
+.tracking-display-md {
+  letter-spacing: -0.96px;
+}
+
+.tracking-display-sm {
+  letter-spacing: -0.6px;
+}
+
+.font-feature-geom {
+  font-feature-settings: "ss01", "ss02";
+}
+
+/* Input custom styles */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+/* Subtle transitions */
+.transition-all-fast {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-hairline-strong);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-mute);
+}
+
+/* Animations */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOutRight {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.drawer-open {
+  animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.drawer-closed {
+  animation: slideOutRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Custom Tooltip Styles for Windows Hover & Mobile Click/Hold */
+.tooltip-container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip-trigger {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--color-hairline-strong);
+  background-color: var(--color-canvas-soft-2);
+  color: var(--color-mute);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 8px;
+  font-weight: 600;
+  cursor: help;
+  user-select: none;
+  margin-left: 6px;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.tooltip-trigger:hover {
+  border-color: var(--color-primary);
+  color: var(--color-ink);
+  background-color: var(--color-canvas-soft);
+}
+
+.tooltip-text {
+  visibility: hidden;
+  position: absolute;
+  top: 135%;
+  bottom: auto;
+  right: -8px;
+  left: auto;
+  transform: translateY(-4px);
+  background-color: var(--color-ink);
+  color: var(--color-canvas);
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  width: 210px;
+  box-shadow: var(--shadow-level-5);
+  z-index: 99999 !important;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s ease;
+  border: 1px solid var(--color-hairline-strong);
+  line-height: 1.4;
+}
+
+/* Tooltip Arrow pointing UP at header icon */
+.tooltip-text::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  top: auto;
+  right: 14px;
+  left: auto;
+  margin-left: 0;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--color-ink) transparent;
+}
+
+.tooltip-container:hover .tooltip-text,
+.tooltip-container.tooltip-active .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Mobile responsive tooltips: convert to fixed screen-bottom explanation bar to prevent overflow & scroll clipping */
+@media (max-width: 768px) {
+  .tooltip-text {
+    position: fixed !important;
+    bottom: 24px !important;
+    top: auto !important;
+    left: 24px !important;
+    right: 24px !important;
+    width: auto !important;
+    max-width: none !important;
+    z-index: 99999 !important;
+    pointer-events: auto !important;
+    transform: translateY(0) !important;
+    border-radius: var(--radius-md) !important;
+    padding: 12px 16px !important;
+    font-size: 11px !important;
+    text-align: center !important;
+    background-color: var(--color-ink) !important;
+    color: var(--color-canvas) !important;
+    box-shadow: var(--shadow-level-5) !important;
+    border: 1px solid var(--color-hairline-strong) !important;
+  }
+
+  .tooltip-text::after {
+    display: none;
+    /* Hide the arrow since it's a fixed viewport banner */
+  }
+
+  .tooltip-container:hover .tooltip-text,
+  .tooltip-container.tooltip-active .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

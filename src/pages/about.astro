@@ -1,0 +1,109 @@
+---
+// src/pages/about.astro
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="About Us — Sweepgrid" 
+  description="Learn about Sweepgrid and The Black Rose: lightning-fast, local Windows workspace and screenshot organizer utility."
+>
+  <div class="mesh-gradient-bg"></div>
+  <div class="min-h-screen flex flex-col font-sans">
+    <Header currentView="about" />
+    
+    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-12 animate-fadeIn">
+      <!-- Breadcrumb navigation -->
+      <div class="flex items-center space-x-2 text-xs font-mono text-mute">
+        <a href="/#home" class="hover:text-ink transition-colors no-underline text-mute">Home</a>
+        <span>/</span>
+        <span class="text-ink font-semibold">About Us</span>
+      </div>
+
+      <!-- Header Section -->
+      <header class="space-y-3 border-b border-hairline pb-8 text-center max-w-3xl mx-auto">
+        <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">ABOUT SWEEPGRID</span>
+        <h1 class="text-3xl sm:text-5xl font-extrabold tracking-display-lg text-ink font-feature-geom">
+          About Sweepgrid.
+        </h1>
+        <p class="text-sm sm:text-base text-body leading-relaxed">
+          Engineered by The Black Rose for clean, lightning-fast local workspace management.
+        </p>
+      </header>
+
+      <!-- Main Content Cards -->
+      <div class="space-y-8 max-w-4xl mx-auto text-xs sm:text-sm text-body leading-relaxed">
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+              🎯
+            </div>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Our Mission</h2>
+            <p>
+              Modern workflows generate hundreds of accidental screenshots, temporary image snippets, and desktop clutter. Whether capturing debug snippets, receipts, meeting slides, or design references, folders quickly balloon into gigabytes of disarray.
+            </p>
+            <p>
+              <strong>Sweepgrid</strong> was built out of a desire for a native, lightning-fast utility that puts users back in complete control of their storage without heavy background bloatware or complicated configurations.
+            </p>
+          </div>
+
+          <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+              🪟
+            </div>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Built for Windows</h2>
+            <p>
+              Optimized specifically for Windows architecture using high-performance modern UI frameworks, Sweepgrid delivers a seamless experience that respects your system resources and file privacy.
+            </p>
+            <p>
+              Unlike bloated web-wrapped software, Sweepgrid starts instantly, reads your local file system with native speed, and works cleanly with Windows 10 and Windows 11 conventions.
+            </p>
+          </div>
+        </div>
+
+        <!-- The Black Rose Philosophy -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-md bg-emerald-500 text-white font-bold text-xs flex items-center justify-center">SG</span>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Engineered by The Black Rose</h2>
+          </div>
+          <p>
+            The Black Rose designs focused, purpose-built utilities that solve common everyday computing frustrations with surgical precision. We believe software should:
+          </p>
+          <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
+              <strong class="text-ink font-semibold block text-xs">🔒 100% Private</strong>
+              <span class="text-[11px] text-mute">Never upload your files, track telemetry, or require cloud sync.</span>
+            </li>
+            <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
+              <strong class="text-ink font-semibold block text-xs">⚡ Instant & Nimble</strong>
+              <span class="text-[11px] text-mute">Zero lag, tiny memory footprint, and no background daemons.</span>
+            </li>
+            <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
+              <strong class="text-ink font-semibold block text-xs">🛡️ Safe Deletions</strong>
+              <span class="text-[11px] text-mute">Recycle Bin protection so you never lose critical documents.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Quick Action CTA -->
+      <div class="text-center pt-8">
+        <a 
+          href="https://apps.microsoft.com" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs shadow-md shadow-emerald-500/20 transition-all no-underline"
+        >
+          <span>Get Sweepgrid on Microsoft Store</span>
+          <span>&rarr;</span>
+        </a>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</Layout>
