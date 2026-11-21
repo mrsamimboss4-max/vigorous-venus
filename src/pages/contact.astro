@@ -100,31 +100,34 @@ import Footer from '../components/Footer.astro';
               ></textarea>
             </div>
 
-            <!-- Submit Button -->
-            <div>
+            <!-- Submit Button & Fallback Mail Link -->
+            <div class="space-y-3 pt-1">
               <button 
                 type="submit" 
                 id="contact-submit-btn" 
-                class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-500/70 disabled:cursor-not-allowed text-white font-semibold text-xs sm:text-sm shadow-md shadow-emerald-500/25 hover:shadow-emerald-500/35 hover:-translate-y-0.5 disabled:hover:translate-y-0 transition-all duration-200 cursor-pointer"
+                class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs sm:text-sm shadow-md shadow-emerald-500/25 hover:shadow-emerald-500/35 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
               >
-                <span id="contact-btn-content" class="inline-flex items-center space-x-2">
-                  <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                  </svg>
-                  <span>Send Message</span>
-                </span>
-                <span id="contact-btn-spinner" class="hidden items-center space-x-2">
-                  <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  <span>Sending message...</span>
-                </span>
+                <svg class="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                </svg>
+                <span>Send Message (Open in Gmail)</span>
               </button>
+
+              <!-- Fallback mailto link for native / mobile email apps -->
+              <div class="flex flex-wrap items-center gap-1.5 text-xs text-mute pt-1">
+                <span>Prefer your default mail app or mobile client?</span>
+                <a 
+                  id="contact-mailto-fallback" 
+                  href="mailto:mrsamimboss4@gmail.com?subject=%5BSweepgrid%20Support%5D%20General%20Inquiry"
+                  class="text-emerald-500 font-semibold hover:underline flex items-center gap-1"
+                >
+                  <span>Open via Mail App (mailto) &rarr;</span>
+                </a>
+              </div>
             </div>
           </form>
 
-          <!-- Status Toast / Banner -->
+          <!-- Status Toast / Confirmation Banner -->
           <div id="contact-status" class="hidden p-4 rounded-xl text-xs animate-fadeIn space-y-1">
             <p id="contact-status-title" class="font-bold"></p>
             <p id="contact-status-msg" class="text-[11px] opacity-90"></p>
@@ -189,86 +192,73 @@ import Footer from '../components/Footer.astro';
     const status = document.getElementById('contact-status');
     const statusTitle = document.getElementById('contact-status-title');
     const statusMsg = document.getElementById('contact-status-msg');
-    const submitBtn = document.getElementById('contact-submit-btn');
-    const btnContent = document.getElementById('contact-btn-content');
-    const btnSpinner = document.getElementById('contact-btn-spinner');
+    const fallbackLink = document.getElementById('contact-mailto-fallback');
 
-    const WEB3FORMS_ACCESS_KEY = "YOUR_ACCESS_KEY_HERE";
+    const RECIPIENT = "mrsamimboss4@gmail.com";
 
-    if (form && status && submitBtn && btnContent && btnSpinner) {
-      form.addEventListener('submit', async (e) => {
+    function buildUrls() {
+      const name = (form.querySelector('[name="name"]')?.value || '').trim() || 'User';
+      const email = (form.querySelector('[name="email"]')?.value || '').trim() || 'No email provided';
+      const platformSelect = form.querySelector('[name="platform"]');
+      const platformText = platformSelect?.options[platformSelect.selectedIndex]?.text || platformSelect?.value || 'General Support';
+      const message = (form.querySelector('[name="message"]')?.value || '').trim() || 'No message provided';
+
+      const subject = `[Sweepgrid Support] ${platformText}`;
+      const body = `Hi Sweepgrid Support,
+
+I am reaching out regarding Sweepgrid. Here are my details:
+
+Name: ${name}
+Reply-To Email: ${email}
+Platform / Category: ${platformText}
+
+Message:
+${message}
+
+---
+Sent via Sweepgrid Support Portal`;
+
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(RECIPIENT)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const mailtoUrl = `mailto:${encodeURIComponent(RECIPIENT)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      return { gmailUrl, mailtoUrl, subject };
+    }
+
+    // Keep fallback mailto link dynamically updated as user fills in the form
+    if (form && fallbackLink) {
+      form.addEventListener('input', () => {
+        const { mailtoUrl } = buildUrls();
+        fallbackLink.href = mailtoUrl;
+      });
+    }
+
+    if (form && status) {
+      form.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // 1. Show loading spinner on the button
-        submitBtn.disabled = true;
-        btnContent.classList.add('hidden');
-        btnContent.classList.remove('inline-flex');
-        btnSpinner.classList.remove('hidden');
-        btnSpinner.classList.add('inline-flex');
+        const { gmailUrl, mailtoUrl } = buildUrls();
 
-        // Hide previous status message
-        status.classList.add('hidden');
-        status.classList.remove('bg-emerald-500/10', 'border-emerald-500/20', 'text-emerald-600', 'dark:text-emerald-400', 'bg-rose-500/10', 'border-rose-500/20', 'text-rose-600', 'dark:text-rose-400', 'border');
-
-        // Gather form fields
-        const nameVal = form.querySelector('[name="name"]')?.value || '';
-        const emailVal = form.querySelector('[name="email"]')?.value || '';
-        const platformVal = form.querySelector('[name="platform"]')?.value || 'Windows';
-        const messageVal = form.querySelector('[name="message"]')?.value || '';
-
-        const payload = {
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: "New Sweepgrid Support Message",
-          from_name: "Sweepgrid Website",
-          name: nameVal,
-          email: emailVal,
-          platform: platformVal,
-          message: messageVal
-        };
-
-        try {
-          const response = await fetch("https://api.web3forms.com/submit", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "Accept": "application/json"
-            },
-            body: JSON.stringify(payload)
-          });
-
-          const data = await response.json().catch(() => ({}));
-
-          if (response.ok && data.success) {
-            // Success State
-            form.reset();
-            status.className = "p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs animate-fadeIn space-y-1";
-            if (statusTitle) statusTitle.textContent = "✓ Message sent!";
-            if (statusMsg) statusMsg.textContent = "Message sent! We'll reply within 24 hours.";
-            status.classList.remove('hidden');
-
-            window.dispatchEvent(new CustomEvent('show-toast', {
-              detail: { message: "Message sent! We'll reply within 24 hours.", type: 'success' }
-            }));
-          } else {
-            throw new Error(data.message || "Failed to submit message to Web3Forms.");
-          }
-        } catch (err) {
-          console.error("Web3Forms error:", err);
-          status.className = "p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-600 dark:text-rose-400 text-xs animate-fadeIn space-y-1";
-          if (statusTitle) statusTitle.textContent = "⚠️ Unable to Send Message";
-          if (statusMsg) statusMsg.textContent = err.message || "A network error occurred. Please check your connection and try again.";
-          status.classList.remove('hidden');
-
-          window.dispatchEvent(new CustomEvent('show-toast', {
-            detail: { message: err.message || "Failed to send message. Please try again.", type: 'error' }
-          }));
-        } finally {
-          submitBtn.disabled = false;
-          btnSpinner.classList.add('hidden');
-          btnSpinner.classList.remove('inline-flex');
-          btnContent.classList.remove('hidden');
-          btnContent.classList.add('inline-flex');
+        if (fallbackLink) {
+          fallbackLink.href = mailtoUrl;
         }
+
+        // 1. Open pre-filled Gmail compose in a new tab
+        window.open(gmailUrl, '_blank', 'noopener,noreferrer');
+
+        // 2. Display friendly confirmation & fallback assistance banner
+        status.className = "p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs animate-fadeIn space-y-1.5";
+        if (statusTitle) {
+          statusTitle.textContent = "✓ Opening Gmail Compose...";
+        }
+        if (statusMsg) {
+          statusMsg.innerHTML = 'A new tab has opened with your message pre-filled in Gmail. If the tab was blocked by your browser or you prefer using your device\'s default mail client, <a href="' + mailtoUrl + '" class="underline font-semibold hover:text-emerald-500">click here to open mailto</a>, or write to us directly at <strong>' + RECIPIENT + '</strong>.';
+        }
+        status.classList.remove('hidden');
+
+        // 3. Dispatch global toast
+        window.dispatchEvent(new CustomEvent('show-toast', {
+          detail: { message: "Opening Gmail compose in new tab...", type: 'success' }
+        }));
       });
     }
   });

@@ -782,13 +782,17 @@
                         <label for="message">Message</label>
                         <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
                     </div>
-                    <button type="submit" id="submit-btn" class="btn-primary" style="width: 100%; justify-content: center; cursor: pointer;">
-                        <span id="btn-text">Send Message</span>
-                    </button>
-                    <div id="form-success" style="display: none; margin-top: 15px; color: var(--accent); font-weight: 600; text-align: center; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); padding: 12px; border-radius: 8px;">
-                        ✓ Message sent! We'll reply within 24 hours.
+                    <div style="display: flex; flex-direction: column; gap: 10px;">
+                        <button type="submit" id="submit-btn" class="btn-primary" style="width: 100%; justify-content: center; cursor: pointer;">
+                            <span id="btn-text">Send Message (Open in Gmail)</span>
+                        </button>
+                        <div style="text-align: center; font-size: 0.8rem; color: var(--text-muted);">
+                            Prefer your default email app? <a id="mailto-fallback-link" href="mailto:mrsamimboss4@gmail.com?subject=%5BSweepgrid%20Support%5D%20General%20Inquiry" style="color: var(--accent); font-weight: 600; text-decoration: underline;">Open via Mail Client (mailto) &rarr;</a>
+                        </div>
                     </div>
-                    <div id="form-error" style="display: none; margin-top: 15px; color: #f87171; font-weight: 600; text-align: center; background: rgba(248, 113, 113, 0.1); border: 1px solid rgba(248, 113, 113, 0.25); padding: 12px; border-radius: 8px;">
+                    <div id="form-success" style="display: none; margin-top: 15px; color: var(--accent); font-weight: 500; text-align: left; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); padding: 14px; border-radius: 8px; line-height: 1.5; font-size: 0.85rem;">
+                        <strong style="display: block; margin-bottom: 4px;">✓ Opening Gmail Compose...</strong>
+                        A new tab has opened with your message pre-filled. If the tab was blocked or you prefer your default mail app, use the mailto link above or email <strong>mrsamimboss4@gmail.com</strong> directly.
                     </div>
                 </form>
             </div>
@@ -854,59 +858,45 @@
             }
         }
 
-        // Contact Form Web3Forms API Submission
-        async function handleFormSubmit(e) {
+        // Contact Form Pre-filled Gmail Compose & Fallback Mailto Handling
+        var RECIPIENT = "mrsamimboss4@gmail.com";
+
+        function buildUrls() {
+            var name = (document.getElementById('name').value || '').trim() || 'User';
+            var email = (document.getElementById('email').value || '').trim() || 'No email provided';
+            var platformSelect = document.getElementById('platform');
+            var platformText = platformSelect.options[platformSelect.selectedIndex].text || platformSelect.value || 'General Support';
+            var message = (document.getElementById('message').value || '').trim() || 'No message provided';
+
+            var subject = "[Sweepgrid Support] " + platformText;
+            var body = "Hi Sweepgrid Support,\n\nI am reaching out regarding Sweepgrid (" + platformText + ").\n\nName: " + name + "\nReply-To Email: " + email + "\nPlatform / Category: " + platformText + "\n\nMessage:\n" + message + "\n\n---\nSent via Sweepgrid Support Portal";
+
+            var gmailUrl = "https://mail.google.com/mail/?view=cm&fs=1&to=" + encodeURIComponent(RECIPIENT) + "&su=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+            var mailtoUrl = "mailto:" + encodeURIComponent(RECIPIENT) + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+            return { gmailUrl: gmailUrl, mailtoUrl: mailtoUrl };
+        }
+
+        // Keep fallback link in sync on input
+        document.getElementById('contact-form').addEventListener('input', function() {
+            var urls = buildUrls();
+            var fallback = document.getElementById('mailto-fallback-link');
+            if (fallback) fallback.href = urls.mailtoUrl;
+        });
+
+        function handleFormSubmit(e) {
             e.preventDefault();
-            var btn = document.getElementById('submit-btn');
-            var btnText = document.getElementById('btn-text');
+            var urls = buildUrls();
             var success = document.getElementById('form-success');
-            var error = document.getElementById('form-error');
+            var fallback = document.getElementById('mailto-fallback-link');
 
-            var name = document.getElementById('name').value;
-            var email = document.getElementById('email').value;
-            var platform = document.getElementById('platform').value;
-            var message = document.getElementById('message').value;
+            if (fallback) fallback.href = urls.mailtoUrl;
 
-            // Loading state with spinner
-            btn.disabled = true;
-            btnText.innerHTML = '<svg style="display:inline-block; vertical-align:middle; width:16px; height:16px; margin-right:8px; animation:spin 1s linear infinite;" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"></circle><path fill="currentColor" opacity="0.75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending message...';
-            success.style.display = 'none';
-            error.style.display = 'none';
+            // 1. Open Gmail Compose in a new tab
+            window.open(urls.gmailUrl, '_blank', 'noopener,noreferrer');
 
-            var payload = {
-                access_key: "YOUR_ACCESS_KEY_HERE",
-                subject: "New Sweepgrid Support Message",
-                from_name: "Sweepgrid Website",
-                name: name,
-                email: email,
-                platform: platform,
-                message: message
-            };
-
-            try {
-                var res = await fetch("https://api.web3forms.com/submit", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Accept": "application/json"
-                    },
-                    body: JSON.stringify(payload)
-                });
-                var data = await res.json().catch(function() { return {}; });
-
-                if (res.ok && data.success) {
-                    document.getElementById('contact-form').reset();
-                    success.style.display = 'block';
-                } else {
-                    throw new Error(data.message || "Failed to submit message.");
-                }
-            } catch (err) {
-                error.textContent = "⚠️ " + (err.message || "Network error. Please try again.");
-                error.style.display = 'block';
-            } finally {
-                btn.disabled = false;
-                btnText.textContent = "Send Message";
-            }
+            // 2. Show confirmation notice
+            if (success) success.style.display = 'block';
         }
 
         // Read hash on load
