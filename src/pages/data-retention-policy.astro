@@ -6,8 +6,8 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout 
-  title="Data Retention Policy — Sweepgrid" 
-  description="Data Retention & Storage Policy for Sweepgrid Windows Screenshot Organizer."
+  title="Data Retention Policy — Sweepgrid (Windows & Android)" 
+  description="Data Retention & Storage Policy for Sweepgrid Screenshot & Trash Management Utility across Windows and Android."
 >
   <div class="mesh-gradient-bg"></div>
   <div class="min-h-screen flex flex-col font-sans">
@@ -20,7 +20,7 @@ import Footer from '../components/Footer.astro';
           Data Retention Policy.
         </h1>
         <p class="text-sm sm:text-base text-body leading-relaxed">
-          Zero remote storage. 100% user-governed local disk control.
+          Zero remote storage. 100% user-governed local disk and mobile device control.
         </p>
       </header>
 
@@ -33,7 +33,7 @@ import Footer from '../components/Footer.astro';
             <h2 class="text-lg font-bold text-ink font-feature-geom">Zero Remote Retention</h2>
           </div>
           <p>
-            Sweepgrid does not operate remote database clusters, telemetry ingestion endpoints, or cloud backup stores for your images. Because our utility is engineered as an entirely local desktop software program, we retain zero bytes of your screenshots, file paths, folder structures, or filenames on any external server.
+            Sweepgrid does not operate remote database clusters, telemetry ingestion endpoints, or cloud backup stores for your images. Because our utility is engineered as an entirely local software application, we retain zero bytes of your screenshots, file paths, folder structures, or filenames on any external server.
           </p>
         </div>
 
@@ -44,21 +44,37 @@ import Footer from '../components/Footer.astro';
             <h2 class="text-lg font-bold text-ink font-feature-geom">Local Ephemeral Caching</h2>
           </div>
           <p>
-            To achieve high-speed scrolling and instant folder previews, Sweepgrid may hold downscaled image thumbnails in your system's volatile memory (RAM) or within standard temporary application storage in your Windows user profile (<code class="font-mono text-[11px] bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">%LOCALAPPDATA%\Sweepgrid</code>).
+            To achieve high-speed scrolling and instant folder previews, Sweepgrid may hold downscaled image thumbnails in your system's volatile memory (RAM) or within standard temporary application storage:
           </p>
-          <p>
-            These temporary thumbnail artifacts are generated locally and discarded when clearing your Windows temporary files or uninstalling the utility.
-          </p>
+          <ul class="space-y-1.5 list-disc pl-5 pt-1">
+            <li><strong>Windows:</strong> <code class="font-mono text-[11px] bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">%LOCALAPPDATA%\Sweepgrid</code></li>
+            <li><strong>Android:</strong> Internal app cache directory (`context.cacheDir`), automatically purged by the OS when space is needed.</li>
+          </ul>
         </div>
 
-        <!-- 3. Complete Data Removal -->
+        <!-- 3. Safe Trash Lifecycles -->
         <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
           <div class="flex items-center space-x-3">
             <span class="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-500 font-mono font-bold text-xs flex items-center justify-center">3</span>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Safe Trash Lifecycles</h2>
+          </div>
+          <p>
+            Sweepgrid avoids destructive permanent deletions by utilizing OS-managed retention lifecycles:
+          </p>
+          <ul class="space-y-1.5 list-disc pl-5 pt-1">
+            <li><strong>Windows Recycle Bin:</strong> Purged items remain safely stored in the user's Windows Recycle Bin until explicitly emptied.</li>
+            <li><strong>Android MediaStore Trash:</strong> Purged items are marked as trashed within Android's MediaStore and retained for 30 days, enabling easy restoration through Google Photos or the native device Gallery app.</li>
+          </ul>
+        </div>
+
+        <!-- 4. Immediate Data Removal -->
+        <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
+          <div class="flex items-center space-x-3">
+            <span class="w-7 h-7 rounded-full bg-emerald-500/10 text-emerald-500 font-mono font-bold text-xs flex items-center justify-center">4</span>
             <h2 class="text-lg font-bold text-ink font-feature-geom">Immediate Data Removal</h2>
           </div>
           <p>
-            Uninstalling Sweepgrid via standard Windows "Installed Apps" or the Microsoft Store immediately and permanently removes all application executables, user configuration settings, and local thumbnail caches from your device.
+            Uninstalling Sweepgrid via standard Windows "Installed Apps" / Microsoft Store or the Android App Info menu immediately and permanently removes all application executables, user configuration settings, and temporary thumbnail caches from your device.
           </p>
         </div>
 

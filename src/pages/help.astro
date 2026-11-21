@@ -6,35 +6,46 @@ import Footer from '../components/Footer.astro';
 
 const faqs = [
   {
-    q: "How do I select custom screenshot directories?",
-    a: "Upon launching Sweepgrid, click the folder picker icon in the upper navigation bar to target any directory on your local drives containing your image captures. Sweepgrid remembers your favorite directories between sessions for quick access."
+    category: "Windows PC",
+    q: "How does Sweepgrid detect Windows screenshots?",
+    a: "Windows typically saves captures made via Win + PrtScn or Snipping Tool inside C:\\Users\\<Username>\\Pictures\\Screenshots. Sweepgrid automatically detects this folder on startup. You can also click the directory selector to target any folder across your internal or external drives."
   },
   {
-    q: "Is my data uploaded to the cloud?",
-    a: "No. Sweepgrid is an entirely local desktop utility. All scanning, sorting, thumbnail generation, and deletions happen directly on your local storage. Your personal captures never touch external cloud servers or tracking pipelines."
+    category: "Windows PC",
+    q: "Where do deleted screenshots go on Windows?",
+    a: "By default, Sweepgrid sends all deleted captures directly to the native Windows Recycle Bin. Your files are never permanently shredded without your consent, and you can restore any accidentally deleted image directly from the Recycle Bin."
   },
   {
-    q: "Where can I report bugs or suggest features?",
-    a: "You can reach out directly via our Contact page or submit issues through our official developer channels. Feedback from daily users drives every single Sweepgrid release."
+    category: "Windows PC",
+    q: "Where can I download the official Windows app?",
+    a: "Sweepgrid for Windows is available through the official Microsoft Store. You can download and install it directly via https://apps.microsoft.com/detail/9PN8GFTX73ZH with automatic background security checks."
   },
   {
-    q: "Where does Windows save screenshots by default?",
-    a: "Windows typically saves captures made via Win + PrtScn or the Windows Snipping Tool in C:\\Users\\<Username>\\Pictures\\Screenshots. Sweepgrid automatically detects and pre-loads this directory upon first launch."
+    category: "Android Mobile",
+    q: "How do I install the Android APK?",
+    a: "Download the APK directly by clicking 'Download for Android (APK)'. When opened on your phone, Android may ask to 'Allow from this source'. Grant permission in Settings to complete installation. Sweepgrid requires zero dangerous root permissions."
   },
   {
-    q: "Are deleted screenshots recoverable if I make a mistake?",
-    a: "Yes. By default, Sweepgrid sends deleted files to the native Windows Recycle Bin rather than permanently shredding them. You can easily open the Recycle Bin to restore any image should you change your mind."
+    category: "Android Mobile",
+    q: "How does Android MediaStore Trash work in Sweepgrid?",
+    a: "Sweepgrid on Android targets Android 10+ Scoped Storage using the official MediaStore API. When you clean captures, Android moves them to the system 30-day gallery trash. You have 30 days to restore any photo from your native Google Photos or Gallery Trash album."
   },
   {
-    q: "Which file formats does Sweepgrid support?",
-    a: "Sweepgrid scans and renders all standard Windows capture formats, including PNG, JPEG, JPG, WEBP, BMP, and animated GIFs, with instantaneous thumbnail caching."
+    category: "Cross-Platform & Privacy",
+    q: "Is my personal data uploaded to any cloud server?",
+    a: "Never. Sweepgrid is 100% offline and runs strictly on your device CPU. There are zero accounts, zero cloud servers, zero external telemetry sniffers, and zero ads. Your files and photos never leave your hardware."
+  },
+  {
+    category: "File Support",
+    q: "Which image formats are supported across PC and mobile?",
+    a: "Sweepgrid renders all popular capture formats including PNG, JPG, JPEG, WEBP, BMP, animated GIFs, and mobile formats like HEIC and AVIF, with instantaneous client-side thumbnail caching."
   }
 ];
 ---
 
 <Layout 
-  title="Help & Support — Sweepgrid" 
-  description="Quick answers, FAQs, and troubleshooting guides for Sweepgrid Windows Screenshot Organizer."
+  title="Help & Support — Sweepgrid (Windows & Android)" 
+  description="Quick answers, FAQs, and setup guides for Sweepgrid on Windows PC and Android devices."
 >
   <div class="mesh-gradient-bg"></div>
   <div class="min-h-screen flex flex-col font-sans">
@@ -50,42 +61,58 @@ const faqs = [
 
       <!-- Header Section -->
       <header class="space-y-3 border-b border-hairline pb-8 text-center max-w-2xl mx-auto">
-        <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">DOCUMENTATION & SUPPORT</span>
+        <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">KNOWLEDGE BASE & GUIDES</span>
         <h1 class="text-3xl sm:text-5xl font-extrabold tracking-display-lg text-ink font-feature-geom">
-          Help & Support.
+          Help & FAQs.
         </h1>
         <p class="text-sm sm:text-base text-body leading-relaxed">
-          Quick answers and troubleshooting guides for Sweepgrid.
+          Comprehensive guides for managing screenshots and storage across Windows and Android.
         </p>
       </header>
 
       <!-- FAQ List -->
       <div class="space-y-4">
         {faqs.map((faq, index) => (
-          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
-            <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
-              <span class="text-emerald-500 font-mono text-xs mt-0.5">Q{index + 1}.</span>
-              <span>{faq.q}</span>
+          <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2.5 shadow-level-1 hover:border-emerald-500/30 transition-colors">
+            <div class="flex items-center justify-between gap-2">
+              <span class="font-mono text-[10px] uppercase px-2 py-0.5 rounded bg-canvas-soft border border-hairline text-emerald-600 dark:text-emerald-400 font-semibold">
+                {faq.category}
+              </span>
+              <span class="font-mono text-xs text-mute">Q{index + 1}</span>
+            </div>
+            <h3 class="text-base font-bold text-ink font-feature-geom">
+              {faq.q}
             </h3>
-            <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
+            <p class="text-xs sm:text-sm text-body leading-relaxed">
               {faq.a}
             </p>
           </div>
         ))}
       </div>
 
-      <!-- Contact Support Banner -->
+      <!-- Quick Download Links Box -->
       <div class="p-8 rounded-2xl bg-canvas border border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 shadow-level-2">
         <div class="space-y-1 text-center sm:text-left">
-          <h4 class="text-base font-bold text-ink font-feature-geom">Need additional assistance?</h4>
-          <p class="text-xs text-body">Our team is here to help with bug reports or custom feature requests.</p>
+          <h4 class="text-base font-bold text-ink font-feature-geom">Ready to clean your screenshot clutter?</h4>
+          <p class="text-xs text-body">Choose your platform and get started in under 30 seconds.</p>
         </div>
-        <a 
-          href="/#contact" 
-          class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs transition-colors no-underline shadow-sm shrink-0"
-        >
-          Contact Our Team
-        </a>
+        <div class="flex flex-col sm:flex-row items-center gap-3 shrink-0">
+          <a 
+            href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="px-4 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs no-underline shadow-sm"
+          >
+            Windows (Store) &rarr;
+          </a>
+          <a 
+            href="/sweepgrid.apk" 
+            download="sweepgrid.apk"
+            class="px-4 py-2.5 rounded-xl bg-canvas border border-emerald-500/40 text-emerald-600 dark:text-emerald-400 font-semibold text-xs no-underline hover:bg-canvas-soft"
+          >
+            Android (APK) &rarr;
+          </a>
+        </div>
       </div>
     </main>
 

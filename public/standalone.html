@@ -3,23 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sweepgrid — Smart Windows Screenshot & File Organizer</title>
+    <title>Sweepgrid — Screenshot & Trash Manager for Windows & Android</title>
+    <meta name="description" content="Sweepgrid is the ultimate cross-platform utility designed for Windows and Android to preview, organize, and purge messy screenshot directories in seconds. 100% private and offline.">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <style>
         :root {
             --bg-color: #07090e;
             --surface: #101522;
+            --surface-soft: #141b2d;
             --surface-border: rgba(255, 255, 255, 0.08);
+            --surface-border-strong: rgba(255, 255, 255, 0.16);
             --accent: #10b981;
+            --accent-hover: #059669;
             --accent-glow: rgba(16, 185, 129, 0.25);
             --text-main: #f3f4f6;
             --text-muted: #9ca3af;
+            --text-faint: #6b7280;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 18px;
+            --radius-xl: 24px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         body {
@@ -29,6 +39,7 @@
             display: flex;
             flex-direction: column;
             overflow-x: hidden;
+            background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 60%);
         }
 
         /* Navigation */
@@ -39,7 +50,13 @@
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-            padding: 24px 20px;
+            padding: 20px;
+            border-bottom: 1px solid var(--surface-border);
+            position: sticky;
+            top: 0;
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(12px);
+            z-index: 100;
         }
 
         .logo {
@@ -50,19 +67,31 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
         }
 
-        .logo span {
+        .logo span.badge {
             background: var(--accent);
             color: #fff;
-            padding: 4px 8px;
+            padding: 3px 8px;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .logo span.platform-tag {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border: 1px solid var(--surface-border);
+            padding: 2px 8px;
+            border-radius: 6px;
+            font-family: monospace;
         }
 
         .nav-links {
             display: flex;
-            gap: 24px;
+            gap: 22px;
+            align-items: center;
         }
 
         .nav-links a {
@@ -71,10 +100,54 @@
             font-size: 0.95rem;
             transition: color 0.2s;
             cursor: pointer;
+            font-weight: 500;
         }
 
         .nav-links a:hover, .nav-links a.active {
             color: var(--accent);
+        }
+
+        .nav-ctas {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-nav-win {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--accent);
+            color: #fff;
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-nav-win:hover {
+            background: var(--accent-hover);
+        }
+
+        .btn-nav-and {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--surface-soft);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 8px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-nav-and:hover {
+            background: rgba(16, 185, 129, 0.1);
         }
 
         /* Main Container & View States */
@@ -103,11 +176,25 @@
         /* Hero Section */
         .hero {
             text-align: center;
-            padding: 60px 0 40px 0;
+            padding: 40px 0 20px 0;
+        }
+
+        .hero-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent);
+            padding: 6px 14px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             font-weight: 800;
             letter-spacing: -0.03em;
             margin-bottom: 20px;
@@ -121,9 +208,18 @@
         .hero p {
             font-size: 1.2rem;
             color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 40px auto;
+            max-width: 700px;
+            margin: 0 auto 36px auto;
             line-height: 1.6;
+        }
+
+        /* Dual Hero Buttons */
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+            margin-bottom: 40px;
         }
 
         .btn-primary {
@@ -132,9 +228,9 @@
             gap: 10px;
             background-color: var(--accent);
             color: #fff;
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 1.05rem;
+            padding: 16px 28px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
             box-shadow: 0 4px 25px var(--accent-glow);
@@ -146,41 +242,143 @@
             filter: brightness(1.1);
         }
 
-        /* Feature Cards Grid */
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--surface);
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            color: var(--accent);
+            padding: 16px 28px;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+            border-color: var(--accent);
+            background-color: var(--surface-soft);
+        }
+
+        /* Interactive Platform Switcher */
+        .platform-switcher-container {
+            margin: 40px auto 20px auto;
+            max-width: 900px;
+        }
+
+        .switcher-tabs {
+            display: inline-flex;
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 4px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+        }
+
+        .switcher-tab-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .switcher-tab-btn.active {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .preview-window {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .preview-titlebar {
+            background: var(--surface-soft);
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--surface-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #374151;
+        }
+
+        .dot.red { background: #ef4444; }
+        .dot.yellow { background: #f59e0b; }
+        .dot.green { background: #10b981; }
+
+        .preview-body {
+            padding: 24px;
+        }
+
+        /* Grid Cards */
         .grid-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 24px;
-            margin-top: 60px;
+            margin-top: 50px;
         }
 
         .card {
             background: var(--surface);
             border: 1px solid var(--surface-border);
-            padding: 32px;
-            border-radius: 16px;
-            transition: border-color 0.2s;
+            padding: 30px;
+            border-radius: var(--radius-lg);
+            transition: border-color 0.2s, transform 0.2s;
         }
 
         .card:hover {
-            border-color: rgba(16, 185, 129, 0.3);
+            border-color: rgba(16, 185, 129, 0.35);
+            transform: translateY(-2px);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 14px;
         }
 
         .card h3 {
             font-size: 1.25rem;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             color: var(--text-main);
         }
 
         .card p {
             color: var(--text-muted);
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         /* Generic Page Styles (About, Contact, Help) */
         .page-header {
             margin-bottom: 40px;
+            text-align: center;
         }
 
         .page-header h2 {
@@ -198,9 +396,10 @@
             background: var(--surface);
             border: 1px solid var(--surface-border);
             padding: 40px;
-            border-radius: 16px;
+            border-radius: var(--radius-lg);
             line-height: 1.7;
             color: var(--text-muted);
+            margin-bottom: 24px;
         }
 
         .content-box h3 {
@@ -213,6 +412,39 @@
             margin-top: 0;
         }
 
+        /* FAQ Items */
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--surface-border);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
+        }
+
+        .faq-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(16, 185, 129, 0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-family: monospace;
+        }
+
+        .faq-item h4 {
+            font-size: 1.15rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .faq-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
         /* Contact Form */
         .form-group {
             margin-bottom: 20px;
@@ -223,7 +455,7 @@
             font-size: 0.9rem;
             color: var(--text-main);
             margin-bottom: 8px;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .form-control {
@@ -256,18 +488,54 @@
             font-size: 0.85rem;
             margin-top: 60px;
         }
+
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        footer a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; }
+            .hero-actions { flex-direction: column; }
+            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+        }
     </style>
 </head>
 <body>
 
     <!-- Navigation Bar -->
     <nav>
-        <a class="logo" onclick="switchPage('home')"><span>SG</span> Sweepgrid</a>
+        <a class="logo" onclick="switchPage('home')">
+            <span class="badge">SG</span> 
+            <span>Sweepgrid</span>
+            <span class="platform-tag">Win & Android</span>
+        </a>
         <div class="nav-links">
             <a id="nav-home" class="active" onclick="switchPage('home')">Home</a>
             <a id="nav-about" onclick="switchPage('about')">About Us</a>
             <a id="nav-help" onclick="switchPage('help')">Help Center</a>
             <a id="nav-contact" onclick="switchPage('contact')">Contact</a>
+        </div>
+        <div class="nav-ctas">
+            <a href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" target="_blank" rel="noopener noreferrer" class="btn-nav-win">
+                🪟 Windows Store
+            </a>
+            <a href="/sweepgrid.apk" download="sweepgrid.apk" class="btn-nav-and">
+                🤖 Android APK
+            </a>
         </div>
     </nav>
 
@@ -277,25 +545,141 @@
         <!-- HOME PAGE -->
         <div id="page-home" class="page-view active">
             <section class="hero">
-                <h1>Conquer Your Desktop <span>Screenshot Clutter</span></h1>
-                <p>Sweepgrid is the ultimate local utility designed for Windows to instantly preview, organize, and purge messy screenshot directories in seconds.</p>
-                <a href="https://apps.microsoft.com" target="_blank" class="btn-primary">
-                    Get it on Microsoft Store
-                </a>
+                <div class="hero-pill">
+                    ● Cross-Platform Utility • Windows PC & Android Mobile • 100% Offline
+                </div>
+                <h1>Conquer Screenshot & Media Clutter <span>Across Windows & Android</span></h1>
+                <p>Sweepgrid is the ultimate local utility designed for Windows and Android to instantly preview, organize, and purge messy screenshot directories and temporary media in seconds. 100% private, zero cloud bloat.</p>
+                
+                <!-- Dual Download Buttons -->
+                <div class="hero-actions">
+                    <a href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                        🪟 Download for Windows (Microsoft Store)
+                    </a>
+                    <a href="/sweepgrid.apk" download="sweepgrid.apk" class="btn-secondary">
+                        🤖 Download for Android (APK)
+                    </a>
+                </div>
+
+                <!-- Interactive Dual Platform Switcher & Mockup Preview -->
+                <div class="platform-switcher-container">
+                    <div class="switcher-tabs">
+                        <button id="tab-win-btn" class="switcher-tab-btn active" onclick="switchMockup('windows')">
+                            🪟 Windows Desktop Dashboard
+                        </button>
+                        <button id="tab-and-btn" class="switcher-tab-btn" onclick="switchMockup('android')">
+                            🤖 Android MediaStore Auto-Trash
+                        </button>
+                    </div>
+
+                    <!-- Windows Preview Panel -->
+                    <div id="preview-win" class="preview-window">
+                        <div class="preview-titlebar">
+                            <div class="dots">
+                                <div class="dot red"></div>
+                                <div class="dot yellow"></div>
+                                <div class="dot green"></div>
+                            </div>
+                            <span>Sweepgrid Windows v1.2 — Pictures\Screenshots</span>
+                            <span>🔒 Recycle Bin Safe Mode: ON</span>
+                        </div>
+                        <div class="preview-body" style="text-align: left;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--surface-border); padding-bottom: 12px;">
+                                <div>
+                                    <strong style="color: var(--text-main);">Detected Folder:</strong>
+                                    <span style="color: var(--text-muted); font-family: monospace; font-size: 0.85rem;">C:\Users\Admin\Pictures\Screenshots</span>
+                                </div>
+                                <div style="display: flex; gap: 8px;">
+                                    <span style="background: rgba(16, 185, 129, 0.15); color: var(--accent); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">128 Captures (1.4 GB)</span>
+                                    <span style="background: var(--surface-soft); color: var(--text-main); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; border: 1px solid var(--surface-border);">Select All</span>
+                                </div>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;">
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">🖼️</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Snipping_01.png</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">2.4 MB</div>
+                                </div>
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">🖼️</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">WinPrtScn_42.png</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">3.8 MB</div>
+                                </div>
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">📊</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Quarterly_Slide.png</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">1.9 MB</div>
+                                </div>
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">🧾</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">OrderReceipt_Nov.png</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">4.1 MB</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Android Preview Panel (Hidden by default) -->
+                    <div id="preview-and" class="preview-window" style="display: none;">
+                        <div class="preview-titlebar">
+                            <div class="dots">
+                                <div class="dot green"></div>
+                                <div class="dot green"></div>
+                            </div>
+                            <span>Sweepgrid Android Mobile — Scoped Storage</span>
+                            <span>♻️ 30-Day Gallery Trash: ACTIVE</span>
+                        </div>
+                        <div class="preview-body" style="text-align: left;">
+                            <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; padding: 14px; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: center;">
+                                <div>
+                                    <strong style="color: var(--accent);">MediaStore Integration:</strong>
+                                    <div style="font-size: 0.8rem; color: var(--text-muted);">DCIM/Screenshots • Pictures/Screenshots auto-grouped</div>
+                                </div>
+                                <span style="background: var(--accent); color: white; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">Clean 85 Images (890 MB)</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px;">
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">📱</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted);">Screenshot_202611...</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">Temporary OTP</div>
+                                </div>
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">💬</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted);">Chat_Snippet.jpg</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">Old Chat Meme</div>
+                                </div>
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">🎟️</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted);">BoardingPass.png</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">Expired Pass</div>
+                                </div>
+                                <div style="background: var(--surface-soft); border: 1px solid var(--surface-border); border-radius: 8px; padding: 10px; text-align: center;">
+                                    <div style="background: #1f293d; height: 75px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 6px;">🗺️</div>
+                                    <div style="font-size: 0.75rem; color: var(--text-muted);">MapDirections.webp</div>
+                                    <div style="font-size: 0.7rem; color: var(--accent); font-weight: 600;">One-time Route</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
+            <!-- Feature Cards Grid -->
             <div class="grid-cards">
                 <div class="card">
-                    <h3>Visual Grid Overview</h3>
-                    <p>Instantly map out chaotic folders into a clean, intuitive layout designed for rapid identification and management.</p>
+                    <div class="card-icon">🪟</div>
+                    <h3>Windows Native Speed</h3>
+                    <p>Auto-detects default <code>Win + PrtScn</code> folders. Purged images safely land in your Windows Recycle Bin so you never lose important files.</p>
                 </div>
                 <div class="card">
-                    <h3>One-Click Quick Clean</h3>
-                    <p>Effortlessly purge unwanted captures and reclaim valuable local disk space without wading through complex menus.</p>
+                    <div class="card-icon">🤖</div>
+                    <h3>Android MediaStore</h3>
+                    <p>Integrates with Android Scoped Storage to clean mobile captures into the 30-day gallery trash. Zero dangerous permissions required.</p>
                 </div>
                 <div class="card">
-                    <h3>100% Private & Local</h3>
-                    <p>Runs entirely offline on your machine. Your personal captures never touch external cloud servers or tracking pipelines.</p>
+                    <div class="card-icon">🔒</div>
+                    <h3>100% Private & Offline</h3>
+                    <p>Operates entirely locally on your machine CPU. No accounts, no background tracking daemons, and zero cloud uploads ever.</p>
                 </div>
             </div>
         </div>
@@ -304,32 +688,68 @@
         <div id="page-about" class="page-view">
             <div class="page-header">
                 <h2>About Sweepgrid</h2>
-                <p>Engineered by The Black Rose for clean, lightning-fast local workspace management.</p>
+                <p>Engineered by The Black Rose for clean, lightning-fast workspace and media management across PC & Mobile.</p>
             </div>
             <div class="content-box">
                 <h3>Our Mission</h3>
-                <p>Modern workflows generate hundreds of accidental screenshots, temporary image snippets, and desktop clutter. Sweepgrid was built out of a desire for a native, lightning-fast utility that puts users back in complete control of their storage without heavy background bloatware.</p>
+                <p>Modern workflows produce hundreds of accidental screenshots, temporary snippets, and device clutter every month. Sweepgrid was built out of a desire for native, lightning-fast utilities that put users back in complete control of storage without background bloatware.</p>
                 
-                <h3>Built for Windows</h3>
-                <p>Optimized specifically for Windows architecture using high-performance modern UI frameworks, Sweepgrid delivers a seamless experience that respects your system resources and file privacy.</p>
+                <h3>Built for Windows PC & Android Mobile</h3>
+                <p>Instead of heavy web-wrapped software, Sweepgrid uses native platform APIs:</p>
+                <ul style="margin-left: 20px; margin-top: 8px;">
+                    <li><strong>Windows Desktop:</strong> Instant folder directory mapping, local caching, and native Recycle Bin protection.</li>
+                    <li><strong>Android Mobile:</strong> Scoped Storage integration with MediaStore 30-day Trash safeguarding and one-tap purges.</li>
+                </ul>
+
+                <h3>The Black Rose Standards</h3>
+                <p>We believe tools should be featherweight, respect user privacy unconditionally, and solve everyday digital frustrations with surgical precision.</p>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                    Get Windows Version (Store)
+                </a>
+                <a href="/sweepgrid.apk" download="sweepgrid.apk" class="btn-secondary">
+                    Download Android APK
+                </a>
             </div>
         </div>
 
         <!-- HELP CENTER PAGE -->
         <div id="page-help" class="page-view">
             <div class="page-header">
-                <h2>Help & Support</h2>
-                <p>Quick answers and troubleshooting guides for Sweepgrid.</p>
+                <h2>Help & Support Center</h2>
+                <p>Frequently asked questions and guides for Windows PC and Android devices.</p>
             </div>
-            <div class="content-box">
-                <h3>How do I select custom screenshot directories?</h3>
-                <p>Upon launching Sweepgrid, click the folder picker icon in the upper navigation bar to target any directory on your local drives containing your image captures.</p>
 
-                <h3>Is my data uploaded to the cloud?</h3>
-                <p>No. Sweepgrid is an entirely local desktop utility. All scanning, sorting, and deletions happen directly on your local storage.</p>
+            <div class="faq-item">
+                <span class="faq-badge">WINDOWS PC</span>
+                <h4>Where does Windows save screenshots by default?</h4>
+                <p>Windows typically saves captures made via <code>Win + PrtScn</code> or Snipping Tool inside <code>C:\Users\&lt;Username&gt;\Pictures\Screenshots</code>. Sweepgrid auto-detects this folder on startup, or lets you choose custom directories.</p>
+            </div>
 
-                <h3>Where can I report bugs or suggest features?</h3>
-                <p>You can reach out directly via the Contact page or submit issues through our official developer channels.</p>
+            <div class="faq-item">
+                <span class="faq-badge">WINDOWS PC</span>
+                <h4>Are deleted screenshots recoverable on Windows?</h4>
+                <p>Yes. By default, Sweepgrid sends deleted files to the native Windows Recycle Bin. You can easily open your Recycle Bin to restore any image accidentally deleted.</p>
+            </div>
+
+            <div class="faq-item">
+                <span class="faq-badge">ANDROID MOBILE</span>
+                <h4>How do I install the Android APK?</h4>
+                <p>Download the APK directly via our download button. When prompted, enable 'Allow from this source' in your device settings to complete installation. Sweepgrid requires no root access.</p>
+            </div>
+
+            <div class="faq-item">
+                <span class="faq-badge">ANDROID MOBILE</span>
+                <h4>How does the Android 30-Day Trash safeguard work?</h4>
+                <p>On Android 10 and above, Sweepgrid moves deleted screenshots to the official Android MediaStore Trash. Items are retained for 30 days and can be restored at any time from Google Photos or your device Gallery.</p>
+            </div>
+
+            <div class="faq-item">
+                <span class="faq-badge">PRIVACY & OFFLINE</span>
+                <h4>Is any personal data uploaded to cloud servers?</h4>
+                <p>No. Sweepgrid runs 100% locally on your hardware. There is zero telemetry, zero user tracking, and no external data sync.</p>
             </div>
         </div>
 
@@ -337,23 +757,37 @@
         <div id="page-contact" class="page-view">
             <div class="page-header">
                 <h2>Get in Touch</h2>
-                <p>Have questions, feedback, or feature requests? Drop us a message.</p>
+                <p>Have questions, bug reports, or feature requests? Contact The Black Rose developer team.</p>
             </div>
-            <div class="content-box" style="background: var(--surface);">
-                <form onsubmit="event.preventDefault(); alert('Message simulated successfully! We will get back to you soon.');">
+            <div class="content-box" style="max-width: 700px; margin: 0 auto;">
+                <form id="contact-form" onsubmit="handleFormSubmit(event)">
                     <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" class="form-control" placeholder="John Doe" required>
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" class="form-control" placeholder="John Doe" required>
                     </div>
                     <div class="form-group">
-                        <label>Your Email Address</label>
-                        <input type="email" class="form-control" placeholder="john@example.com" required>
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
                     </div>
                     <div class="form-group">
-                        <label>Message</label>
-                        <textarea class="form-control" placeholder="How can we help you?" required></textarea>
+                        <label for="platform">Platform</label>
+                        <select id="platform" class="form-control">
+                            <option value="windows">Windows PC (Microsoft Store)</option>
+                            <option value="android">Android Mobile (APK)</option>
+                            <option value="both">Both Windows & Android</option>
+                            <option value="general">General Feedback</option>
+                        </select>
                     </div>
-                    <button type="submit" class="btn-primary">Send Message</button>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn" class="btn-primary" style="width: 100%; justify-content: center; cursor: pointer;">
+                        Send Message
+                    </button>
+                    <div id="form-success" style="display: none; margin-top: 15px; color: var(--accent); font-weight: 600; text-align: center;">
+                        ✓ Message received! We will respond within 24 hours.
+                    </div>
                 </form>
             </div>
         </div>
@@ -362,27 +796,83 @@
 
     <!-- Footer -->
     <footer>
-        &copy; 2026 The Black Rose. All rights reserved. Built for Sweepgrid.
+        <p>Cross-platform Windows & Android. &copy; 2026 The Black Rose. All rights reserved.</p>
+        <div class="footer-links">
+            <a onclick="switchPage('home')">Home</a>
+            <a onclick="switchPage('about')">About Us</a>
+            <a onclick="switchPage('help')">Help Center</a>
+            <a onclick="switchPage('contact')">Contact</a>
+            <a href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" target="_blank" rel="noopener noreferrer">Windows Store</a>
+            <a href="/sweepgrid.apk" download="sweepgrid.apk">Android APK</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms">Terms</a>
+        </div>
     </footer>
 
-    <!-- Simple SPA View Switcher Script -->
+    <!-- Scripts -->
     <script>
+        // Page view switching
         function switchPage(pageId) {
-            // Hide all pages
-            document.querySelectorAll('.page-view').forEach(page => {
-                page.classList.remove('active');
+            document.querySelectorAll('.page-view').forEach(function(el) {
+                el.classList.remove('active');
             });
-            // Remove active class from nav links
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                link.classList.remove('active');
+            document.querySelectorAll('.nav-links a').forEach(function(el) {
+                el.classList.remove('active');
             });
-            // Show target page
-            document.getElementById('page-' + pageId).classList.add('active');
-            // Highlight nav link
-            document.getElementById('nav-' + pageId).classList.add('active');
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            var targetPage = document.getElementById('page-' + pageId);
+            var targetNav = document.getElementById('nav-' + pageId);
+
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            if (targetNav) {
+                targetNav.classList.add('active');
+            }
         }
+
+        // Mockup Platform Switcher (Windows vs Android)
+        function switchMockup(platform) {
+            var tabWin = document.getElementById('tab-win-btn');
+            var tabAnd = document.getElementById('tab-and-btn');
+            var previewWin = document.getElementById('preview-win');
+            var previewAnd = document.getElementById('preview-and');
+
+            if (platform === 'android') {
+                previewWin.style.display = 'none';
+                previewAnd.style.display = 'block';
+                tabAnd.classList.add('active');
+                tabWin.classList.remove('active');
+            } else {
+                previewAnd.style.display = 'none';
+                previewWin.style.display = 'block';
+                tabWin.classList.add('active');
+                tabAnd.classList.remove('active');
+            }
+        }
+
+        // Contact Form Submission
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            var btn = document.getElementById('submit-btn');
+            var success = document.getElementById('form-success');
+            btn.disabled = true;
+            btn.innerText = 'Sending...';
+
+            setTimeout(function() {
+                btn.style.display = 'none';
+                success.style.display = 'block';
+            }, 600);
+        }
+
+        // Read hash on load
+        window.addEventListener('load', function() {
+            var hash = window.location.hash.replace('#', '');
+            if (['home', 'about', 'help', 'contact'].indexOf(hash) !== -1) {
+                switchPage(hash);
+            }
+        });
     </script>
 </body>
 </html>

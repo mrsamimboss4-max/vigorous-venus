@@ -6,8 +6,8 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout 
-  title="Privacy Policy — Sweepgrid" 
-  description="Read the privacy policy for Sweepgrid: 100% private, local Windows screenshot and file organizer utility by The Black Rose."
+  title="Privacy Policy — Sweepgrid (Windows & Android)" 
+  description="Read the privacy policy for Sweepgrid: 100% private, local screenshot and trash management utility for Windows and Android by The Black Rose."
 >
   <div class="mesh-gradient-bg"></div>
   <div class="min-h-screen flex flex-col font-sans">
@@ -20,7 +20,7 @@ import Footer from '../components/Footer.astro';
           Privacy Policy.
         </h1>
         <p class="text-sm sm:text-base text-body leading-relaxed">
-          Your files never leave your computer. Learn how Sweepgrid protects your privacy by design.
+          Your files never leave your device. Learn how Sweepgrid protects your privacy across Windows and Android.
         </p>
       </header>
 
@@ -30,10 +30,10 @@ import Footer from '../components/Footer.astro';
         <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
           <h2 class="text-lg font-bold text-ink font-feature-geom">1. 100% Offline & Local-First Processing</h2>
           <p>
-            At <strong>Sweepgrid</strong> (engineered by The Black Rose), we believe your personal files, work documents, and desktop captures belong exclusively to you. Sweepgrid operates entirely as an offline, client-side utility on your Windows operating system.
+            At <strong>Sweepgrid</strong> (engineered by The Black Rose), we believe your personal files, work documents, receipts, and screen captures belong exclusively to you. Sweepgrid operates entirely as an offline, client-side utility on both Windows and Android operating systems.
           </p>
           <p>
-            When you scan folders, generate thumbnails, or delete files, all computations occur exclusively on your local CPU and drive. No screenshot data, image previews, folder paths, or system metadata are ever transmitted to external cloud servers or remote databases.
+            When you scan folders, generate thumbnails, or purge captures, all computations occur exclusively on your local device CPU and internal storage. No screenshot data, image previews, folder paths, or system metadata are ever transmitted to external cloud servers or remote databases.
           </p>
         </div>
 
@@ -41,23 +41,31 @@ import Footer from '../components/Footer.astro';
         <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
           <h2 class="text-lg font-bold text-ink font-feature-geom">2. Zero Telemetry & Ad Tracking</h2>
           <p>
-            Sweepgrid contains zero third-party advertising SDKs, diagnostic sniffers, or user tracking cookies. We do not build demographic profiles, monitor file names, or track your workflow habits. You can use Sweepgrid completely disconnected from the internet without any loss of functionality.
+            Sweepgrid contains zero third-party advertising SDKs, diagnostic sniffers, or user tracking cookies. We do not build demographic profiles, monitor file names, or track your workflow habits. Both the Windows desktop app and the Android APK function completely disconnected from the internet without any loss of features.
           </p>
         </div>
 
-        <!-- 3. Safe Deletion & Recycle Bin -->
+        <!-- 3. Safe Deletion & Recycle Bin / MediaStore Trash -->
         <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
-          <h2 class="text-lg font-bold text-ink font-feature-geom">3. File Handling & Recycle Bin Safety</h2>
+          <h2 class="text-lg font-bold text-ink font-feature-geom">3. File Handling & Safe Trash Safeguards</h2>
           <p>
-            Sweepgrid only accesses directories you explicitly authorize or standard Windows screenshot capture paths. When performing cleanup operations, Sweepgrid calls native Windows Shell deletion APIs that direct files into your <strong>Windows Recycle Bin</strong> by default, ensuring you retain the ability to recover any accidentally selected captures.
+            Sweepgrid respects your platform's native safety mechanisms:
           </p>
+          <ul class="space-y-2 pt-1 list-disc pl-5">
+            <li>
+              <strong>Windows:</strong> Deletions call native Windows Shell deletion APIs that direct files directly into your <strong>Windows Recycle Bin</strong>, allowing you to restore any accidentally deleted image.
+            </li>
+            <li>
+              <strong>Android:</strong> Deletions use Android Scoped Storage and the standard <strong>MediaStore API</strong> to move items into the Android system 30-day Trash bin. Items remain restorable via your Gallery or Google Photos app for 30 days.
+            </li>
+          </ul>
         </div>
 
         <!-- 4. Contact & Inquiries -->
         <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
           <h2 class="text-lg font-bold text-ink font-feature-geom">4. Questions & Developer Inquiries</h2>
           <p>
-            If you have questions regarding this Privacy Policy or software architecture, you may contact the development team at any time via our <a href="/contact" class="text-emerald-500 font-semibold hover:underline">Contact Page</a>.
+            If you have questions regarding this Privacy Policy or software architecture, you may contact the development team at any time via our <a href="/#contact" class="text-emerald-500 font-semibold hover:underline">Contact Page</a>.
           </p>
         </div>
 

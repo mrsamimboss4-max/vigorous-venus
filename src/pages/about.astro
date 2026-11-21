@@ -6,8 +6,8 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout 
-  title="About Us — Sweepgrid" 
-  description="Learn about Sweepgrid and The Black Rose: lightning-fast, local Windows workspace and screenshot organizer utility."
+  title="About Us — Sweepgrid (Windows & Android)" 
+  description="Learn about Sweepgrid and The Black Rose: lightning-fast, local screenshot and trash management utility for Windows PC and Android devices."
 >
   <div class="mesh-gradient-bg"></div>
   <div class="min-h-screen flex flex-col font-sans">
@@ -25,10 +25,10 @@ import Footer from '../components/Footer.astro';
       <header class="space-y-3 border-b border-hairline pb-8 text-center max-w-3xl mx-auto">
         <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">ABOUT SWEEPGRID</span>
         <h1 class="text-3xl sm:text-5xl font-extrabold tracking-display-lg text-ink font-feature-geom">
-          About Sweepgrid.
+          Cross-Platform Storage Clarity.
         </h1>
         <p class="text-sm sm:text-base text-body leading-relaxed">
-          Engineered by The Black Rose for clean, lightning-fast local workspace management.
+          Engineered by The Black Rose for lightning-fast, local screenshot and media clutter management across Windows PC and Android Mobile.
         </p>
       </header>
 
@@ -36,70 +36,91 @@ import Footer from '../components/Footer.astro';
       <div class="space-y-8 max-w-4xl mx-auto text-xs sm:text-sm text-body leading-relaxed">
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Mission -->
           <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold text-lg">
               🎯
             </div>
             <h2 class="text-lg font-bold text-ink font-feature-geom">Our Mission</h2>
             <p>
-              Modern workflows generate hundreds of accidental screenshots, temporary image snippets, and desktop clutter. Whether capturing debug snippets, receipts, meeting slides, or design references, folders quickly balloon into gigabytes of disarray.
+              Modern workflows produce dozens of temporary screenshots every single day: quick code snippets, receipt captures, one-time OTP confirmations, memes, and meeting slides. On both desktop and mobile, these files pile up into gigabytes of disarray.
             </p>
             <p>
-              <strong>Sweepgrid</strong> was built out of a desire for a native, lightning-fast utility that puts users back in complete control of their storage without heavy background bloatware or complicated configurations.
+              <strong>Sweepgrid</strong> was engineered to eliminate this clutter instantly—giving you full control over your device storage without requiring slow cloud sync, intrusive subscriptions, or background bloatware.
             </p>
           </div>
 
+          <!-- Cross-Platform Architecture -->
           <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
-              🪟
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold text-lg">
+              ⚡
             </div>
-            <h2 class="text-lg font-bold text-ink font-feature-geom">Built for Windows</h2>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">Built for Windows & Android</h2>
             <p>
-              Optimized specifically for Windows architecture using high-performance modern UI frameworks, Sweepgrid delivers a seamless experience that respects your system resources and file privacy.
+              Unlike electron or heavy web wrappers, Sweepgrid uses native platform hooks tailored specifically for each operating system:
             </p>
-            <p>
-              Unlike bloated web-wrapped software, Sweepgrid starts instantly, reads your local file system with native speed, and works cleanly with Windows 10 and Windows 11 conventions.
-            </p>
+            <ul class="space-y-2 pt-1">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">🪟 Windows:</span>
+                <span>Auto-detects default screenshot directories (`Win + PrtScn`, Snipping Tool) and routes purges directly through the Windows Recycle Bin.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-500 font-bold">🤖 Android:</span>
+                <span>Integrates with modern Android Scoped Storage & MediaStore APIs, safely routing unwanted captures to the OS 30-day gallery trash bin.</span>
+              </li>
+            </ul>
           </div>
         </div>
 
         <!-- The Black Rose Philosophy -->
         <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
           <div class="flex items-center space-x-3">
-            <span class="w-7 h-7 rounded-md bg-emerald-500 text-white font-bold text-xs flex items-center justify-center">SG</span>
-            <h2 class="text-lg font-bold text-ink font-feature-geom">Engineered by The Black Rose</h2>
+            <span class="w-8 h-8 rounded-lg bg-emerald-500 text-white font-extrabold text-xs flex items-center justify-center shadow-xs">SG</span>
+            <h2 class="text-lg font-bold text-ink font-feature-geom">The Black Rose Principles</h2>
           </div>
           <p>
-            The Black Rose designs focused, purpose-built utilities that solve common everyday computing frustrations with surgical precision. We believe software should:
+            The Black Rose designs focused, purpose-built utilities that solve common everyday computing frustrations with surgical precision. Our software guarantees:
           </p>
-          <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-            <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
-              <strong class="text-ink font-semibold block text-xs">🔒 100% Private</strong>
-              <span class="text-[11px] text-mute">Never upload your files, track telemetry, or require cloud sync.</span>
-            </li>
-            <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
-              <strong class="text-ink font-semibold block text-xs">⚡ Instant & Nimble</strong>
-              <span class="text-[11px] text-mute">Zero lag, tiny memory footprint, and no background daemons.</span>
-            </li>
-            <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
-              <strong class="text-ink font-semibold block text-xs">🛡️ Safe Deletions</strong>
-              <span class="text-[11px] text-mute">Recycle Bin protection so you never lose critical documents.</span>
-            </li>
-          </ul>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+            <div class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
+              <strong class="text-ink font-semibold block text-xs">🔒 100% Private & Local</strong>
+              <span class="text-[11px] text-mute">All scanning, grid generation, and deletions occur solely on your local CPU. Zero telemetry, zero cloud uploads.</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
+              <strong class="text-ink font-semibold block text-xs">⚡ Native Performance</strong>
+              <span class="text-[11px] text-mute">Instant startup, featherweight memory footprint, and instantaneous thumbnail caching.</span>
+            </div>
+            <div class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
+              <strong class="text-ink font-semibold block text-xs">🛡️ Safe Trash Safeguard</strong>
+              <span class="text-[11px] text-mute">Recycle Bin protection on Windows and 30-day MediaStore Trash protection on Android ensure you never lose critical captures.</span>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <!-- Quick Action CTA -->
-      <div class="text-center pt-8">
+      <!-- Quick Action Dual CTAs -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-center gap-4">
         <a 
-          href="https://apps.microsoft.com" 
+          href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" 
           target="_blank" 
           rel="noopener noreferrer"
-          class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs shadow-md shadow-emerald-500/20 transition-all no-underline"
+          class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs shadow-md shadow-emerald-500/20 transition-all no-underline"
         >
-          <span>Get Sweepgrid on Microsoft Store</span>
-          <span>&rarr;</span>
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm0 17.102L9.75 21.9v-9.451H0v8.102zm10.95 1.551L24 24V11.551H10.95v10.551zM24 0L10.95 1.898v9.653H24V0z"/>
+          </svg>
+          <span>Get on Microsoft Store</span>
+        </a>
+        <a 
+          href="/sweepgrid.apk" 
+          download="sweepgrid.apk"
+          class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-6 py-3 rounded-xl bg-canvas border border-emerald-500/40 hover:border-emerald-500 text-emerald-600 dark:text-emerald-400 font-semibold text-xs transition-all no-underline shadow-sm"
+        >
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+            <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.1 12 8.1s-3.5902.3116-5.1368.8497L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/>
+          </svg>
+          <span>Download Android APK</span>
         </a>
       </div>
     </main>

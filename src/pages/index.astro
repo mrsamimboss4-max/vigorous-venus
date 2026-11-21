@@ -6,8 +6,8 @@ import Footer from '../components/Footer.astro';
 ---
 
 <Layout 
-  title="Sweepgrid — Smart Windows Screenshot & File Organizer" 
-  description="Sweepgrid is the ultimate local utility designed for Windows to instantly preview, organize, and purge messy screenshot directories in seconds."
+  title="Sweepgrid — Cross-Platform Screenshot & Trash Manager for Windows & Android" 
+  description="Sweepgrid is the ultimate local utility designed for Windows and Android to instantly preview, organize, and purge messy screenshot directories and media clutter in seconds. 100% private and offline."
 >
   <!-- Background Mesh Gradient decoration -->
   <div class="mesh-gradient-bg"></div>
@@ -27,61 +27,91 @@ import Footer from '../components/Footer.astro';
           <!-- Eyebrow Pill -->
           <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-mono font-medium shadow-xs">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Native Windows Utility • 100% Offline & Private</span>
+            <span>Cross-Platform Utility • Windows PC & Android Mobile • 100% Offline & Private</span>
           </div>
 
           <!-- Main Headline -->
           <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-display-xl text-ink font-feature-geom leading-[1.1]">
-            Conquer Your Desktop <br class="hidden sm:inline" />
+            Conquer Screenshot & Media Clutter <br class="hidden sm:inline" />
             <span class="bg-gradient-to-r from-emerald-500 to-teal-400 bg-clip-text text-transparent">
-              Screenshot Clutter
+              Across Windows & Android
             </span>
           </h1>
 
           <!-- Subtitle -->
           <p class="text-base sm:text-lg md:text-xl text-body max-w-2xl mx-auto leading-relaxed">
-            Sweepgrid is the ultimate local utility designed for Windows to instantly preview, organize, and purge messy screenshot directories in seconds.
+            Sweepgrid is the ultimate local utility designed for Windows and Android to instantly preview, organize, and purge messy screenshot directories and temporary captures in seconds. Runs 100% locally with zero cloud bloat.
           </p>
 
-          <!-- CTA Buttons -->
+          <!-- Dual Side-by-Side Hero Download Buttons -->
           <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <!-- 1) Download for Windows (Microsoft Store) -->
             <a 
-              href="https://apps.microsoft.com" 
+              href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/35 hover:-translate-y-0.5 transition-all duration-200 no-underline cursor-pointer group"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 px-7 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/35 hover:-translate-y-0.5 transition-all duration-200 no-underline cursor-pointer group"
             >
-              <svg class="w-4 h-4 fill-current opacity-95 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+              <svg class="w-4 h-4 fill-current opacity-95 group-hover:scale-110 transition-transform shrink-0" viewBox="0 0 24 24">
                 <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm0 17.102L9.75 21.9v-9.451H0v8.102zm10.95 1.551L24 24V11.551H10.95v10.551zM24 0L10.95 1.898v9.653H24V0z"/>
               </svg>
-              <span>Get it on Microsoft Store</span>
+              <span>Download for Windows (Store)</span>
             </a>
 
-            <button 
-              type="button"
-              onclick="switchPage('help')"
-              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3.5 rounded-xl bg-canvas border border-hairline hover:border-hairline-strong text-body hover:text-ink font-semibold text-sm transition-all duration-200 no-underline shadow-sm hover:bg-canvas-soft cursor-pointer"
+            <!-- 2) Download for Android (APK) -->
+            <a 
+              href="/sweepgrid.apk" 
+              download="sweepgrid.apk"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 px-7 py-3.5 rounded-xl bg-canvas border border-emerald-500/50 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold text-sm shadow-sm hover:-translate-y-0.5 transition-all duration-200 no-underline cursor-pointer group"
             >
-              <span>Explore Help & FAQ</span>
-              <svg class="w-3.5 h-3.5 text-mute" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+              <svg class="w-4 h-4 fill-current opacity-95 group-hover:scale-110 transition-transform shrink-0" viewBox="0 0 24 24">
+                <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.1 12 8.1s-3.5902.3116-5.1368.8497L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/>
               </svg>
-            </button>
+              <span>Download for Android (APK)</span>
+            </a>
           </div>
 
           <!-- Quick Trust Badges -->
-          <div class="pt-2 flex flex-wrap items-center justify-center gap-6 text-xs text-mute font-mono">
-            <span class="flex items-center gap-1.5">✓ 100% Free & Local</span>
-            <span class="flex items-center gap-1.5">✓ No Telemetry / Tracking</span>
-            <span class="flex items-center gap-1.5">✓ Windows 10 & 11 Ready</span>
+          <div class="pt-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-mute font-mono">
+            <span class="flex items-center gap-1.5">✓ Windows 10 & 11 (Store Certified)</span>
+            <span class="flex items-center gap-1.5">✓ Android 10+ (APK Direct)</span>
+            <span class="flex items-center gap-1.5">✓ Windows Recycle Bin & MediaStore Safe</span>
           </div>
         </section>
 
-        <!-- APP WINDOW MOCKUP PREVIEW -->
-        <section class="max-w-5xl mx-auto">
-          <div class="rounded-2xl border border-hairline/80 bg-canvas shadow-level-4 overflow-hidden transition-all duration-300">
-            
-            <!-- Mock Window Title Bar -->
+        <!-- DUAL PLATFORM SWITCHER & INTERACTIVE PREVIEW -->
+        <section class="max-w-5xl mx-auto space-y-4">
+          <!-- Platform Switcher Tab Buttons -->
+          <div class="flex items-center justify-center">
+            <div class="inline-flex p-1 rounded-xl bg-canvas border border-hairline shadow-sm">
+              <button 
+                id="tab-btn-windows" 
+                type="button"
+                onclick="switchPlatform('windows')"
+                class="px-5 py-2 rounded-lg text-xs font-semibold flex items-center space-x-2 transition-all cursor-pointer bg-emerald-500 text-white shadow-xs"
+              >
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm0 17.102L9.75 21.9v-9.451H0v8.102zm10.95 1.551L24 24V11.551H10.95v10.551zM24 0L10.95 1.898v9.653H24V0z"/>
+                </svg>
+                <span>Windows Desktop Dashboard</span>
+              </button>
+              <button 
+                id="tab-btn-android" 
+                type="button"
+                onclick="switchPlatform('android')"
+                class="px-5 py-2 rounded-lg text-xs font-semibold flex items-center space-x-2 transition-all cursor-pointer text-body hover:text-ink hover:bg-canvas-soft"
+              >
+                <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                  <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.1 12 8.1s-3.5902.3116-5.1368.8497L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/>
+                </svg>
+                <span>Android MediaStore Auto-Trash</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- PREVIEW 1: WINDOWS DASHBOARD -->
+          <div id="preview-panel-windows" class="rounded-2xl border border-hairline/80 bg-canvas shadow-level-4 overflow-hidden transition-all duration-300">
+            <!-- Title Bar -->
             <div class="h-10 bg-canvas-soft border-b border-hairline px-4 flex items-center justify-between text-xs text-mute font-mono select-none">
               <div class="flex items-center space-x-2.5">
                 <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
@@ -89,7 +119,7 @@ import Footer from '../components/Footer.astro';
                 <span class="w-3 h-3 rounded-full bg-green-500/80 inline-block"></span>
                 <span class="text-ink/80 text-[11px] font-medium ml-2 font-sans flex items-center gap-1.5">
                   <span class="w-3.5 h-3.5 rounded bg-emerald-500 text-white font-bold text-[8px] flex items-center justify-center">SG</span>
-                  Sweepgrid — C:\Users\User\Pictures\Screenshots
+                  Sweepgrid v1.0 — C:\Users\User\Pictures\Screenshots
                 </span>
               </div>
               <div class="flex items-center space-x-3 text-[11px]">
@@ -98,14 +128,14 @@ import Footer from '../components/Footer.astro';
               </div>
             </div>
 
-            <!-- Mock Window Toolbar -->
+            <!-- Toolbar -->
             <div class="p-3 sm:p-4 bg-canvas border-b border-hairline/60 flex flex-wrap items-center justify-between gap-3 text-xs">
               <div class="flex flex-wrap items-center gap-2">
                 <div class="px-3 py-1.5 rounded-lg bg-canvas-soft border border-hairline text-ink font-medium flex items-center space-x-1.5 select-none">
                   <svg class="w-3.5 h-3.5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
                   </svg>
-                  <span>Target Folder: Screenshots</span>
+                  <span>Folder: Pictures\Screenshots</span>
                 </div>
                 
                 <div class="hidden sm:flex items-center space-x-1 pl-2 border-l border-hairline">
@@ -126,10 +156,8 @@ import Footer from '../components/Footer.astro';
               </div>
             </div>
 
-            <!-- Mock Visual Grid Layout -->
-            <div class="p-4 sm:p-6 bg-canvas-soft-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 select-none">
-              
-              <!-- Mock Thumbnail 1 -->
+            <!-- Windows Thumbnail Grid -->
+            <div class="p-4 sm:p-6 bg-canvas-soft-2 grid grid-cols-2 sm:grid-cols-4 gap-4 select-none">
               <div class="rounded-xl border border-hairline bg-canvas p-2.5 space-y-2 shadow-xs group hover:border-emerald-500/40 transition-colors">
                 <div class="h-28 rounded-lg bg-slate-800/10 dark:bg-slate-800/60 border border-hairline/50 flex flex-col items-center justify-center relative overflow-hidden">
                   <div class="absolute top-2 left-2 w-3.5 h-3.5 rounded border border-emerald-500 bg-emerald-500 text-white flex items-center justify-center text-[9px] font-bold">✓</div>
@@ -137,7 +165,7 @@ import Footer from '../components/Footer.astro';
                   <span class="text-2xl opacity-60">🖼️</span>
                 </div>
                 <div class="space-y-0.5">
-                  <p class="text-[11px] font-medium text-ink truncate">Screenshot_2026-11-14_0912.png</p>
+                  <p class="text-[11px] font-medium text-ink truncate">Screenshot_2026-11-20_0912.png</p>
                   <div class="flex items-center justify-between text-[10px] text-mute font-mono">
                     <span>3.4 MB</span>
                     <span class="text-emerald-500 font-semibold">Selected</span>
@@ -145,7 +173,6 @@ import Footer from '../components/Footer.astro';
                 </div>
               </div>
 
-              <!-- Mock Thumbnail 2 -->
               <div class="rounded-xl border border-hairline bg-canvas p-2.5 space-y-2 shadow-xs group hover:border-emerald-500/40 transition-colors">
                 <div class="h-28 rounded-lg bg-slate-800/10 dark:bg-slate-800/60 border border-hairline/50 flex flex-col items-center justify-center relative overflow-hidden">
                   <div class="absolute top-2 left-2 w-3.5 h-3.5 rounded border border-emerald-500 bg-emerald-500 text-white flex items-center justify-center text-[9px] font-bold">✓</div>
@@ -153,7 +180,7 @@ import Footer from '../components/Footer.astro';
                   <span class="text-2xl opacity-60">📊</span>
                 </div>
                 <div class="space-y-0.5">
-                  <p class="text-[11px] font-medium text-ink truncate">Snip_Meeting_Notes_Q4.png</p>
+                  <p class="text-[11px] font-medium text-ink truncate">Meeting_Notes_Quarterly.png</p>
                   <div class="flex items-center justify-between text-[10px] text-mute font-mono">
                     <span>5.8 MB</span>
                     <span class="text-emerald-500 font-semibold">Selected</span>
@@ -161,7 +188,6 @@ import Footer from '../components/Footer.astro';
                 </div>
               </div>
 
-              <!-- Mock Thumbnail 3 -->
               <div class="rounded-xl border border-hairline bg-canvas p-2.5 space-y-2 shadow-xs group hover:border-emerald-500/40 transition-colors">
                 <div class="h-28 rounded-lg bg-slate-800/10 dark:bg-slate-800/60 border border-hairline/50 flex flex-col items-center justify-center relative overflow-hidden">
                   <div class="absolute top-2 left-2 w-3.5 h-3.5 rounded border border-hairline-strong bg-canvas flex items-center justify-center"></div>
@@ -177,35 +203,123 @@ import Footer from '../components/Footer.astro';
                 </div>
               </div>
 
-              <!-- Mock Thumbnail 4 -->
-              <div class="rounded-xl border border-hairline bg-canvas p-2.5 space-y-2 shadow-xs group hover:border-emerald-500/40 transition-colors hidden sm:block">
+              <div class="rounded-xl border border-hairline bg-canvas p-2.5 space-y-2 shadow-xs group hover:border-emerald-500/40 transition-colors">
                 <div class="h-28 rounded-lg bg-slate-800/10 dark:bg-slate-800/60 border border-hairline/50 flex flex-col items-center justify-center relative overflow-hidden">
                   <div class="absolute top-2 left-2 w-3.5 h-3.5 rounded border border-emerald-500 bg-emerald-500 text-white flex items-center justify-center text-[9px] font-bold">✓</div>
                   <div class="absolute bottom-1 right-2 text-[10px] font-mono text-mute">1920x1080</div>
                   <span class="text-2xl opacity-60">💻</span>
                 </div>
                 <div class="space-y-0.5">
-                  <p class="text-[11px] font-medium text-ink truncate">Terminal_Error_Log.png</p>
+                  <p class="text-[11px] font-medium text-ink truncate">Terminal_Debug_Capture.png</p>
                   <div class="flex items-center justify-between text-[10px] text-mute font-mono">
                     <span>2.1 MB</span>
                     <span class="text-emerald-500 font-semibold">Selected</span>
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
 
+          <!-- PREVIEW 2: ANDROID MEDIASTORE AUTO-TRASH SCREEN -->
+          <div id="preview-panel-android" class="hidden rounded-2xl border border-hairline/80 bg-canvas shadow-level-4 overflow-hidden transition-all duration-300">
+            <!-- Mobile Frame Container -->
+            <div class="max-w-md mx-auto p-4 sm:p-6">
+              <div class="rounded-3xl border-2 border-hairline bg-canvas-soft shadow-level-3 overflow-hidden">
+                <!-- Android Status Bar -->
+                <div class="h-7 bg-canvas-soft px-4 flex items-center justify-between text-[10px] text-mute font-mono border-b border-hairline/40">
+                  <span class="font-bold text-ink">09:41</span>
+                  <div class="flex items-center space-x-1.5">
+                    <span>📶 5G</span>
+                    <span>🔋 98%</span>
+                  </div>
+                </div>
+
+                <!-- Android App Bar -->
+                <div class="p-3 bg-canvas border-b border-hairline flex items-center justify-between">
+                  <div class="flex items-center space-x-2">
+                    <span class="w-6 h-6 rounded bg-emerald-500 text-white font-extrabold text-[10px] flex items-center justify-center">SG</span>
+                    <div>
+                      <h4 class="text-xs font-bold text-ink leading-tight">Sweepgrid Mobile</h4>
+                      <p class="text-[9px] text-mute font-mono">/storage/emulated/0/DCIM/Screenshots</p>
+                    </div>
+                  </div>
+                  <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 text-[10px] font-semibold font-mono">MediaStore Sync</span>
+                </div>
+
+                <!-- Android Storage & Auto-Trash Rule Card -->
+                <div class="p-3 space-y-2.5">
+                  <div class="p-3 rounded-xl bg-canvas border border-hairline space-y-2">
+                    <div class="flex items-center justify-between text-xs">
+                      <span class="font-semibold text-ink">MediaStore Storage Audit</span>
+                      <span class="text-emerald-500 font-bold font-mono">890 MB Recoverable</span>
+                    </div>
+                    <div class="w-full h-1.5 rounded-full bg-canvas-soft overflow-hidden">
+                      <div class="h-full bg-emerald-500 w-3/4 rounded-full"></div>
+                    </div>
+                    <div class="flex items-center justify-between text-[10px] text-mute">
+                      <span>184 snips found</span>
+                      <span>Target: Auto-Trash</span>
+                    </div>
+                  </div>
+
+                  <!-- Auto-trash filter pills -->
+                  <div class="flex items-center space-x-1.5 overflow-x-auto pb-1 text-[10px]">
+                    <span class="px-2.5 py-1 rounded-md bg-emerald-500 text-white font-semibold">Screenshots (112)</span>
+                    <span class="px-2.5 py-1 rounded-md bg-canvas border border-hairline text-body">WhatsApp Snips (48)</span>
+                    <span class="px-2.5 py-1 rounded-md bg-canvas border border-hairline text-body">OTP Codes (24)</span>
+                  </div>
+
+                  <!-- Android Media Thumbnail Grid (Vertical Aspect Ratio) -->
+                  <div class="grid grid-cols-3 gap-2 select-none">
+                    <div class="p-1.5 rounded-lg bg-canvas border border-emerald-500/40 space-y-1">
+                      <div class="h-24 rounded bg-slate-800/10 dark:bg-slate-800/60 relative flex items-center justify-center text-xl">
+                        <span class="absolute top-1 left-1 w-3 h-3 rounded bg-emerald-500 text-white text-[8px] font-bold flex items-center justify-center">✓</span>
+                        📱
+                      </div>
+                      <p class="text-[9px] text-ink truncate font-medium">OTP_Login_Code.jpg</p>
+                      <p class="text-[8px] text-emerald-500 font-mono">1.1 MB • 24h old</p>
+                    </div>
+
+                    <div class="p-1.5 rounded-lg bg-canvas border border-emerald-500/40 space-y-1">
+                      <div class="h-24 rounded bg-slate-800/10 dark:bg-slate-800/60 relative flex items-center justify-center text-xl">
+                        <span class="absolute top-1 left-1 w-3 h-3 rounded bg-emerald-500 text-white text-[8px] font-bold flex items-center justify-center">✓</span>
+                        🧾
+                      </div>
+                      <p class="text-[9px] text-ink truncate font-medium">Payment_Slip_UPI.jpg</p>
+                      <p class="text-[8px] text-emerald-500 font-mono">2.4 MB • 5d old</p>
+                    </div>
+
+                    <div class="p-1.5 rounded-lg bg-canvas border border-hairline space-y-1">
+                      <div class="h-24 rounded bg-slate-800/10 dark:bg-slate-800/60 relative flex items-center justify-center text-xl">
+                        📷
+                      </div>
+                      <p class="text-[9px] text-ink truncate font-medium">Flight_Boarding.jpg</p>
+                      <p class="text-[8px] text-mute font-mono">1.8 MB • Kept</p>
+                    </div>
+                  </div>
+
+                  <!-- Android System Trash Safe Action -->
+                  <div class="pt-1">
+                    <div class="w-full py-2.5 rounded-xl bg-emerald-500 text-white font-semibold text-xs flex items-center justify-center space-x-1.5 shadow-xs">
+                      <span>🗑️ Send Selected to Gallery Trash (30-Day Safe)</span>
+                    </div>
+                    <p class="text-[9px] text-center text-mute pt-1">Compliant with Android 10+ Scoped Storage & MediaStore APIs</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- CORE FEATURE CARDS GRID -->
+        <!-- CORE FEATURE CARDS GRID (CROSS-PLATFORM) -->
         <section class="space-y-10">
           <div class="text-center space-y-2 max-w-xl mx-auto">
-            <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">Engineered For Performance</span>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-emerald-500 font-semibold">Engineered For Desktop & Mobile</span>
             <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink font-feature-geom">
-              Designed for Instant Clarity & Zero Bloat
+              Unified Screenshot & Trash Management
             </h2>
             <p class="text-xs sm:text-sm text-body">
-              Stop digging through thousands of unorganized files in Windows File Explorer.
+              Stop digging through thousands of forgotten screen grabs across your PC folders and phone galleries.
             </p>
           </div>
 
@@ -217,9 +331,9 @@ import Footer from '../components/Footer.astro';
                   <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                 </svg>
               </div>
-              <h3 class="text-lg font-bold text-ink font-feature-geom">Visual Grid Overview</h3>
+              <h3 class="text-lg font-bold text-ink font-feature-geom">Visual Grid & MediaStore Overview</h3>
               <p class="text-body text-xs sm:text-sm leading-relaxed">
-                Instantly map out chaotic folders into a clean, intuitive layout designed for rapid identification and management.
+                Seamless visual folder mapping for Windows PC and native MediaStore indexing for Android. Instantly groups captures by date, size, and snippet type.
               </p>
             </div>
 
@@ -230,9 +344,9 @@ import Footer from '../components/Footer.astro';
                   <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 class="text-lg font-bold text-ink font-feature-geom">One-Click Quick Clean</h3>
+              <h3 class="text-lg font-bold text-ink font-feature-geom">One-Click Quick Clean & Auto-Trash</h3>
               <p class="text-body text-xs sm:text-sm leading-relaxed">
-                Effortlessly purge unwanted captures and reclaim valuable local disk space without wading through complex menus.
+                Purge clutter with total peace of mind. Uses native Windows Recycle Bin integration on PC and Android system MediaStore trash with 30-day restore protection.
               </p>
             </div>
 
@@ -243,45 +357,45 @@ import Footer from '../components/Footer.astro';
                   <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
               </div>
-              <h3 class="text-lg font-bold text-ink font-feature-geom">100% Private & Local</h3>
+              <h3 class="text-lg font-bold text-ink font-feature-geom">100% Private, Local & Offline</h3>
               <p class="text-body text-xs sm:text-sm leading-relaxed">
-                Runs entirely offline on your machine. Your personal captures never touch external cloud servers or tracking pipelines.
+                Zero cloud servers, zero background telemetric spyware, and no accounts required. Both the Windows desktop app and the Android APK operate strictly on local storage.
               </p>
             </div>
           </div>
         </section>
 
-        <!-- HOW IT WORKS IN 3 STEPS -->
+        <!-- WORKFLOW IN 3 STEPS FOR BOTH PLATFORMS -->
         <section class="max-w-4xl mx-auto space-y-8 border-t border-hairline pt-16">
           <div class="text-center space-y-2">
-            <span class="font-mono text-[10px] uppercase tracking-wider text-violet font-semibold">Workflow Simplicity</span>
+            <span class="font-mono text-[10px] uppercase tracking-wider text-violet font-semibold">Native Execution</span>
             <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-ink font-feature-geom">
-              How Sweepgrid Operates
+              How Sweepgrid Operates on Both Platforms
             </h2>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs sm:text-sm">
             <div class="p-6 rounded-xl bg-canvas border border-hairline space-y-3 shadow-xs">
               <span class="w-7 h-7 rounded-full bg-emerald-500 text-white font-mono font-bold flex items-center justify-center text-xs">1</span>
-              <h4 class="font-bold text-ink text-sm font-feature-geom">Target Any Folder</h4>
+              <h4 class="font-bold text-ink text-sm font-feature-geom">Automatic Directory Targeting</h4>
               <p class="text-body leading-relaxed">
-                Sweepgrid automatically recognizes default Windows screenshot folders or lets you pick any custom local storage drive.
+                Auto-detects <code class="font-mono text-[11px] bg-canvas-soft px-1 rounded">Pictures\Screenshots</code> on Windows, and <code class="font-mono text-[11px] bg-canvas-soft px-1 rounded">DCIM/Screenshots</code> via MediaStore on Android.
               </p>
             </div>
 
             <div class="p-6 rounded-xl bg-canvas border border-hairline space-y-3 shadow-xs">
               <span class="w-7 h-7 rounded-full bg-emerald-500 text-white font-mono font-bold flex items-center justify-center text-xs">2</span>
-              <h4 class="font-bold text-ink text-sm font-feature-geom">Rapid Visual Triage</h4>
+              <h4 class="font-bold text-ink text-sm font-feature-geom">Intelligent Age & Size Triage</h4>
               <p class="text-body leading-relaxed">
-                Scan through high-resolution thumbnails, filter by age or dimensions, and isolate outdated snips in a few keystrokes.
+                Filter ephemeral captures such as temporary passcodes, order confirmations, and memes older than 7 or 30 days in one glance.
               </p>
             </div>
 
             <div class="p-6 rounded-xl bg-canvas border border-hairline space-y-3 shadow-xs">
               <span class="w-7 h-7 rounded-full bg-emerald-500 text-white font-mono font-bold flex items-center justify-center text-xs">3</span>
-              <h4 class="font-bold text-ink text-sm font-feature-geom">Safely Reclaim Disk Space</h4>
+              <h4 class="font-bold text-ink text-sm font-feature-geom">Safely Reversible Purge</h4>
               <p class="text-body leading-relaxed">
-                Purge files with Recycle Bin protection so you can instantly free up gigabytes of disk space with absolute peace of mind.
+                Purges directly to the Windows Recycle Bin or Android System Gallery Trash, allowing instantaneous recovery if you change your mind.
               </p>
             </div>
           </div>
@@ -291,24 +405,37 @@ import Footer from '../components/Footer.astro';
         <section class="rounded-3xl border border-hairline bg-canvas p-8 sm:p-12 text-center space-y-6 shadow-level-3 relative overflow-hidden">
           <div class="max-w-2xl mx-auto space-y-3">
             <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-ink font-feature-geom">
-              Reclaim Your Desktop Space Today
+              Reclaim Your Storage on PC and Mobile
             </h2>
             <p class="text-xs sm:text-sm text-body">
-              Get Sweepgrid on the Microsoft Store and say goodbye to cluttered screenshot folders forever.
+              Download Sweepgrid for Windows from the Microsoft Store, or grab the Android APK for your smartphone.
             </p>
           </div>
 
-          <div>
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <!-- Windows Button -->
             <a 
-              href="https://apps.microsoft.com" 
+              href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" 
               target="_blank" 
               rel="noopener noreferrer" 
-              class="inline-flex items-center space-x-2.5 px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/35 hover:-translate-y-0.5 transition-all duration-200 no-underline cursor-pointer group"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-8 py-3.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/35 hover:-translate-y-0.5 transition-all duration-200 no-underline cursor-pointer group"
             >
               <svg class="w-4 h-4 fill-current opacity-95 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
                 <path d="M0 3.449L9.75 2.1v9.451H0V3.449zm0 17.102L9.75 21.9v-9.451H0v8.102zm10.95 1.551L24 24V11.551H10.95v10.551zM24 0L10.95 1.898v9.653H24V0z"/>
               </svg>
-              <span>Get it on Microsoft Store</span>
+              <span>Download for Windows (Store)</span>
+            </a>
+
+            <!-- Android Button -->
+            <a 
+              href="/sweepgrid.apk" 
+              download="sweepgrid.apk"
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 px-8 py-3.5 rounded-xl bg-canvas border border-emerald-500/50 hover:border-emerald-500 hover:bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 font-semibold text-sm shadow-sm hover:-translate-y-0.5 transition-all duration-200 no-underline cursor-pointer group"
+            >
+              <svg class="w-4 h-4 fill-current opacity-95 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
+                <path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.551 0 .9993.4482.9993.9993.0001.5511-.4483.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.4116 13.8533 8.1 12 8.1s-3.5902.3116-5.1368.8497L4.8409 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"/>
+              </svg>
+              <span>Download for Android (APK)</span>
             </a>
           </div>
         </section>
@@ -333,7 +460,7 @@ import Footer from '../components/Footer.astro';
             About Sweepgrid.
           </h2>
           <p class="text-sm sm:text-base text-body leading-relaxed">
-            Engineered by The Black Rose for clean, lightning-fast local workspace management.
+            Cross-platform workspace and media organization engineered by The Black Rose.
           </p>
         </header>
 
@@ -347,23 +474,23 @@ import Footer from '../components/Footer.astro';
               </div>
               <h3 class="text-lg font-bold text-ink font-feature-geom">Our Mission</h3>
               <p>
-                Modern workflows generate hundreds of accidental screenshots, temporary image snippets, and desktop clutter. Whether capturing debug snippets, receipts, meeting slides, or design references, folders quickly balloon into gigabytes of disarray.
+                Modern work happens across multiple screens. In a single day, users take dozens of screenshots across their Windows PC and Android phone—debugging snippets, banking receipts, chat logs, and temporary memes.
               </p>
               <p>
-                <strong>Sweepgrid</strong> was built out of a desire for a native, lightning-fast utility that puts users back in complete control of their storage without heavy background bloatware or complicated configurations.
+                <strong>Sweepgrid</strong> was created to solve screenshot bloating natively on both platforms. It eliminates clutter with one-click rapid triage and automatic trash rules, without heavy background daemons or unwanted cloud uploads.
               </p>
             </div>
 
             <div class="p-8 border border-hairline bg-canvas rounded-2xl space-y-4 shadow-level-2">
               <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center font-bold">
-                🪟
+                ⚡
               </div>
-              <h3 class="text-lg font-bold text-ink font-feature-geom">Built for Windows</h3>
+              <h3 class="text-lg font-bold text-ink font-feature-geom">Built for Windows & Android</h3>
               <p>
-                Optimized specifically for Windows architecture using high-performance modern UI frameworks, Sweepgrid delivers a seamless experience that respects your system resources and file privacy.
+                <strong>On Windows:</strong> Leverages native desktop file system speed, instant folder browsing, and the Windows Recycle Bin API.
               </p>
               <p>
-                Unlike bloated web-wrapped software, Sweepgrid starts instantly, reads your local file system with native speed, and works cleanly with Windows 10 and Windows 11 conventions.
+                <strong>On Android:</strong> Built specifically to comply with Android 10+ Scoped Storage and MediaStore APIs, enabling automated trash lifecycle management without battery drain.
               </p>
             </div>
           </div>
@@ -375,20 +502,20 @@ import Footer from '../components/Footer.astro';
               <h3 class="text-lg font-bold text-ink font-feature-geom">Engineered by The Black Rose</h3>
             </div>
             <p>
-              The Black Rose designs focused, purpose-built utilities that solve common everyday computing frustrations with surgical precision. We believe software should:
+              The Black Rose develops purpose-built utilities that solve common everyday computing frustrations with surgical precision. Our cross-platform principles:
             </p>
             <ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
               <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
                 <strong class="text-ink font-semibold block text-xs">🔒 100% Private</strong>
-                <span class="text-[11px] text-mute">Never upload your files, track telemetry, or require cloud sync.</span>
+                <span class="text-[11px] text-mute">Zero server uploads, zero analytics, zero accounts required.</span>
               </li>
               <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
-                <strong class="text-ink font-semibold block text-xs">⚡ Instant & Nimble</strong>
-                <span class="text-[11px] text-mute">Zero lag, tiny memory footprint, and no background daemons.</span>
+                <strong class="text-ink font-semibold block text-xs">⚡ Native Speed</strong>
+                <span class="text-[11px] text-mute">Instant startup, tiny memory footprint on PC, zero mobile battery drain.</span>
               </li>
               <li class="p-4 rounded-xl bg-canvas-soft border border-hairline space-y-1">
-                <strong class="text-ink font-semibold block text-xs">🛡️ Safe Deletions</strong>
-                <span class="text-[11px] text-mute">Recycle Bin protection so you never lose critical documents.</span>
+                <strong class="text-ink font-semibold block text-xs">🛡️ Reversible Deletions</strong>
+                <span class="text-[11px] text-mute">Safe Windows Recycle Bin & Android 30-day MediaStore Trash protection.</span>
               </li>
             </ul>
           </div>
@@ -414,69 +541,71 @@ import Footer from '../components/Footer.astro';
             Help & Support.
           </h2>
           <p class="text-sm sm:text-base text-body leading-relaxed">
-            Quick answers and troubleshooting guides for Sweepgrid.
+            Quick answers and troubleshooting guides for Sweepgrid on Windows PC and Android Mobile.
           </p>
         </header>
 
-        <!-- FAQs List -->
+        <!-- FAQs List (Cross-Platform) -->
         <div class="space-y-4 max-w-4xl mx-auto">
           <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
             <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
               <span class="text-emerald-500 font-mono text-xs mt-0.5">Q1.</span>
-              <span>How do I select custom screenshot directories?</span>
+              <span>How do I install Sweepgrid on Windows?</span>
             </h3>
             <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
-              Upon launching Sweepgrid, click the folder picker icon in the upper navigation bar to target any directory on your local drives containing your image captures. Sweepgrid remembers your favorite directories between sessions for quick access.
+              You can install Sweepgrid on Windows 10 and Windows 11 directly from the Microsoft Store using our official link: <a href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" target="_blank" rel="noopener noreferrer" class="text-emerald-500 hover:underline font-semibold">apps.microsoft.com/detail/9PN8GFTX73ZH</a>. It automatically updates and installs in seconds with zero bloat.
             </p>
           </div>
 
           <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
             <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
               <span class="text-emerald-500 font-mono text-xs mt-0.5">Q2.</span>
-              <span>Is my data uploaded to the cloud?</span>
+              <span>How do I install Sweepgrid on Android?</span>
             </h3>
             <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
-              No. Sweepgrid is an entirely local desktop utility. All scanning, sorting, thumbnail generation, and deletions happen directly on your local storage. Your personal captures never touch external cloud servers or tracking pipelines.
+              Download the APK directly using the <a href="/sweepgrid.apk" download="sweepgrid.apk" class="text-emerald-500 hover:underline font-semibold">Download for Android (APK)</a> button. When prompted by your phone, tap the downloaded file and allow "Install Unknown Apps" for your browser. Sweepgrid requires Android 10 or higher.
             </p>
           </div>
 
           <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
             <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
               <span class="text-emerald-500 font-mono text-xs mt-0.5">Q3.</span>
-              <span>Where can I report bugs or suggest features?</span>
+              <span>How does Android MediaStore Auto-Trash work?</span>
             </h3>
             <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
-              You can reach out directly via the Contact page or submit issues through our official developer channels. Feedback from daily users drives every single Sweepgrid release.
+              On Android, Sweepgrid uses Google's official scoped storage MediaStore API. Instead of permanently shredding photos, purged items are moved to your Android gallery's native Trash / Recycle Bin, where they are safely held for 30 days before permanent deletion. You can restore them anytime from your phone's default Gallery app.
             </p>
           </div>
 
           <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
             <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
               <span class="text-emerald-500 font-mono text-xs mt-0.5">Q4.</span>
-              <span>Where does Windows save screenshots by default?</span>
+              <span>Where do Windows and Android save screenshots by default?</span>
             </h3>
             <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
-              Windows typically saves captures made via <code class="font-mono text-xs bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">Win + PrtScn</code> or the Windows Snipping Tool in <code class="font-mono text-xs bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">C:\Users\&lt;Username&gt;\Pictures\Screenshots</code>. Sweepgrid automatically detects and pre-loads this directory upon first launch.
+              <strong>Windows:</strong> <code class="font-mono text-xs bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">C:\Users\&lt;Username&gt;\Pictures\Screenshots</code>.<br/>
+              <strong>Android:</strong> <code class="font-mono text-xs bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">/storage/emulated/0/DCIM/Screenshots</code> or <code class="font-mono text-xs bg-canvas-soft px-1.5 py-0.5 rounded border border-hairline">/Pictures/Screenshots</code>.<br/>
+              Sweepgrid automatically detects and pre-loads these locations on both platforms.
             </p>
           </div>
 
           <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
             <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
               <span class="text-emerald-500 font-mono text-xs mt-0.5">Q5.</span>
-              <span>Are deleted screenshots recoverable if I make a mistake?</span>
+              <span>Does Sweepgrid require an active internet connection?</span>
             </h3>
             <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
-              Yes. By default, Sweepgrid sends deleted files to the native Windows Recycle Bin rather than permanently shredding them. You can easily open the Recycle Bin to restore any image should you change your mind.
+              No. Both the Windows desktop app and the Android mobile app function completely offline. Scanning, thumbnailing, rule sorting, and deletions occur 100% locally on your device.
             </p>
           </div>
 
           <div class="p-6 rounded-2xl bg-canvas border border-hairline space-y-2 shadow-level-1 hover:border-emerald-500/30 transition-colors">
             <h3 class="text-base font-bold text-ink font-feature-geom flex items-start gap-2.5">
               <span class="text-emerald-500 font-mono text-xs mt-0.5">Q6.</span>
-              <span>Which file formats does Sweepgrid support?</span>
+              <span>Which file formats are supported?</span>
             </h3>
             <p class="text-xs sm:text-sm text-body leading-relaxed pl-6">
-              Sweepgrid scans and renders all standard Windows capture formats, including PNG, JPEG, JPG, WEBP, BMP, and animated GIFs, with instantaneous thumbnail caching.
+              Sweepgrid supports PNG, JPEG, JPG, WEBP, BMP, and GIF on both Windows and Android, with hardware-accelerated local thumbnail rendering.
             </p>
           </div>
         </div>
@@ -484,15 +613,15 @@ import Footer from '../components/Footer.astro';
         <!-- Contact Support CTA Banner -->
         <div class="max-w-4xl mx-auto p-8 rounded-2xl bg-canvas border border-hairline flex flex-col sm:flex-row items-center justify-between gap-6 shadow-level-2">
           <div class="space-y-1 text-center sm:text-left">
-            <h4 class="text-base font-bold text-ink font-feature-geom">Need additional assistance?</h4>
-            <p class="text-xs text-body">Our team is here to help with bug reports or custom feature requests.</p>
+            <h4 class="text-base font-bold text-ink font-feature-geom">Have questions about PC or Mobile?</h4>
+            <p class="text-xs text-body">Our team is here to assist with Windows and Android bug reports or feature requests.</p>
           </div>
           <button 
             type="button"
             onclick="switchPage('contact')"
             class="px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold text-xs transition-colors shadow-sm shrink-0 cursor-pointer"
           >
-            Contact Our Team
+            Contact Developer Desk
           </button>
         </div>
       </div>
@@ -515,7 +644,7 @@ import Footer from '../components/Footer.astro';
             Get in Touch.
           </h2>
           <p class="text-sm sm:text-base text-body leading-relaxed">
-            Have questions, feedback, or feature requests? Drop us a message.
+            Have questions, feedback, or feature requests for Windows or Android? Drop us a message.
           </p>
         </header>
 
@@ -555,6 +684,24 @@ import Footer from '../components/Footer.astro';
                 />
               </div>
 
+              <!-- Platform / Topic Selector -->
+              <div class="space-y-1.5">
+                <label for="form-platform" class="block text-xs font-semibold text-ink">
+                  Platform / Category <span class="text-emerald-500">*</span>
+                </label>
+                <select 
+                  id="form-platform" 
+                  name="platform"
+                  class="w-full px-4 py-3 rounded-xl bg-canvas-soft border border-hairline text-ink text-xs sm:text-sm focus:outline-none focus:border-emerald-500 transition-colors"
+                >
+                  <option value="windows">Windows App (Microsoft Store)</option>
+                  <option value="android">Android App (APK)</option>
+                  <option value="cross-platform">Cross-Platform Question</option>
+                  <option value="feature">Feature Request</option>
+                  <option value="bug">Bug Report</option>
+                </select>
+              </div>
+
               <!-- Message Textarea -->
               <div class="space-y-1.5">
                 <label for="form-message" class="block text-xs font-semibold text-ink">
@@ -564,7 +711,7 @@ import Footer from '../components/Footer.astro';
                   id="form-message" 
                   name="message" 
                   rows="5" 
-                  placeholder="How can we help you?" 
+                  placeholder="How can we help with Windows or Android Sweepgrid?" 
                   required 
                   class="w-full px-4 py-3 rounded-xl bg-canvas-soft border border-hairline text-ink text-xs sm:text-sm placeholder:text-mute focus:outline-none focus:border-emerald-500 transition-colors resize-y min-h-[120px]"
                 ></textarea>
@@ -588,7 +735,7 @@ import Footer from '../components/Footer.astro';
             <!-- Status Banner -->
             <div id="spa-contact-status" class="hidden p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs animate-fadeIn space-y-1">
               <p class="font-bold">✓ Message Simulated Successfully</p>
-              <p class="text-[11px] opacity-90">Thank you! We will get back to you soon.</p>
+              <p class="text-[11px] opacity-90">Thank you! The Black Rose team will get back to you soon.</p>
             </div>
           </div>
 
@@ -597,12 +744,12 @@ import Footer from '../components/Footer.astro';
             <div class="p-6 rounded-2xl bg-canvas border border-hairline shadow-level-1 space-y-4 text-xs">
               <h3 class="font-bold text-sm text-ink font-feature-geom">Direct Developer Desk</h3>
               <p class="text-body leading-relaxed">
-                Sweepgrid is engineered and maintained by <strong>The Black Rose</strong>. Every bug report and suggestion directly shapes upcoming releases.
+                Sweepgrid is engineered and maintained by <strong>The Black Rose</strong> for both Windows PC and Android devices.
               </p>
               <div class="space-y-2 pt-2 border-t border-hairline text-mute">
                 <div class="flex items-center space-x-2">
                   <span>⏱️</span>
-                  <span>Response time: Within 24 hours</span>
+                  <span>Response: Within 24 hours</span>
                 </div>
                 <div class="flex items-center space-x-2">
                   <span>🛡️</span>
@@ -612,18 +759,28 @@ import Footer from '../components/Footer.astro';
             </div>
 
             <div class="p-6 rounded-2xl bg-canvas border border-hairline shadow-level-1 space-y-3 text-xs">
-              <h4 class="font-bold text-ink">Microsoft Store App Hub</h4>
-              <p class="text-body leading-relaxed">
-                You can also submit ratings, store reviews, and diagnostic reports through the Microsoft Store.
-              </p>
-              <a 
-                href="https://apps.microsoft.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="inline-block text-emerald-500 font-semibold hover:underline"
-              >
-                Open Microsoft Store &rarr;
-              </a>
+              <h4 class="font-bold text-ink">Official Download Portals</h4>
+              <ul class="space-y-2">
+                <li>
+                  <a 
+                    href="https://apps.microsoft.com/detail/9PN8GFTX73ZH" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="text-emerald-500 font-semibold hover:underline flex items-center gap-1.5"
+                  >
+                    <span>🪟 Windows Store Page &rarr;</span>
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/sweepgrid.apk" 
+                    download="sweepgrid.apk" 
+                    class="text-emerald-500 font-semibold hover:underline flex items-center gap-1.5"
+                  >
+                    <span>🤖 Android APK Download &rarr;</span>
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
@@ -636,11 +793,40 @@ import Footer from '../components/Footer.astro';
   </div>
 </Layout>
 
-<!-- SPA Page-View Switcher Script -->
+<!-- SPA Page-View Switcher & Platform Dual-Preview Script -->
 <script is:inline>
   (function() {
     const validPages = ['home', 'about', 'help', 'contact'];
 
+    // Platform switcher for interactive mockup (Windows vs Android)
+    window.switchPlatform = function(platform) {
+      const btnWin = document.getElementById('tab-btn-windows');
+      const btnAnd = document.getElementById('tab-btn-android');
+      const panelWin = document.getElementById('preview-panel-windows');
+      const panelAnd = document.getElementById('preview-panel-android');
+
+      if (!btnWin || !btnAnd || !panelWin || !panelAnd) return;
+
+      if (platform === 'android') {
+        panelWin.classList.add('hidden');
+        panelAnd.classList.remove('hidden');
+
+        btnAnd.classList.add('bg-emerald-500', 'text-white', 'shadow-xs');
+        btnAnd.classList.remove('text-body');
+        btnWin.classList.remove('bg-emerald-500', 'text-white', 'shadow-xs');
+        btnWin.classList.add('text-body');
+      } else {
+        panelAnd.classList.add('hidden');
+        panelWin.classList.remove('hidden');
+
+        btnWin.classList.add('bg-emerald-500', 'text-white', 'shadow-xs');
+        btnWin.classList.remove('text-body');
+        btnAnd.classList.remove('bg-emerald-500', 'text-white', 'shadow-xs');
+        btnAnd.classList.add('text-body');
+      }
+    };
+
+    // SPA Page view switcher
     window.switchPage = function(pageId) {
       if (!validPages.includes(pageId)) {
         pageId = 'home';
