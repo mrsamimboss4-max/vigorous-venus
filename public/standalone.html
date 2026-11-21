@@ -783,10 +783,12 @@
                         <textarea id="message" class="form-control" placeholder="How can we help you?" required></textarea>
                     </div>
                     <button type="submit" id="submit-btn" class="btn-primary" style="width: 100%; justify-content: center; cursor: pointer;">
-                        Send Message
+                        <span id="btn-text">Send Message</span>
                     </button>
-                    <div id="form-success" style="display: none; margin-top: 15px; color: var(--accent); font-weight: 600; text-align: center;">
-                        ✓ Message received! We will respond within 24 hours.
+                    <div id="form-success" style="display: none; margin-top: 15px; color: var(--accent); font-weight: 600; text-align: center; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.25); padding: 12px; border-radius: 8px;">
+                        ✓ Message sent! We'll reply within 24 hours.
+                    </div>
+                    <div id="form-error" style="display: none; margin-top: 15px; color: #f87171; font-weight: 600; text-align: center; background: rgba(248, 113, 113, 0.1); border: 1px solid rgba(248, 113, 113, 0.25); padding: 12px; border-radius: 8px;">
                     </div>
                 </form>
             </div>
@@ -852,18 +854,59 @@
             }
         }
 
-        // Contact Form Submission
-        function handleFormSubmit(e) {
+        // Contact Form Web3Forms API Submission
+        async function handleFormSubmit(e) {
             e.preventDefault();
             var btn = document.getElementById('submit-btn');
+            var btnText = document.getElementById('btn-text');
             var success = document.getElementById('form-success');
-            btn.disabled = true;
-            btn.innerText = 'Sending...';
+            var error = document.getElementById('form-error');
 
-            setTimeout(function() {
-                btn.style.display = 'none';
-                success.style.display = 'block';
-            }, 600);
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var platform = document.getElementById('platform').value;
+            var message = document.getElementById('message').value;
+
+            // Loading state with spinner
+            btn.disabled = true;
+            btnText.innerHTML = '<svg style="display:inline-block; vertical-align:middle; width:16px; height:16px; margin-right:8px; animation:spin 1s linear infinite;" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" opacity="0.25"></circle><path fill="currentColor" opacity="0.75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Sending message...';
+            success.style.display = 'none';
+            error.style.display = 'none';
+
+            var payload = {
+                access_key: "YOUR_ACCESS_KEY_HERE",
+                subject: "New Sweepgrid Support Message",
+                from_name: "Sweepgrid Website",
+                name: name,
+                email: email,
+                platform: platform,
+                message: message
+            };
+
+            try {
+                var res = await fetch("https://api.web3forms.com/submit", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(payload)
+                });
+                var data = await res.json().catch(function() { return {}; });
+
+                if (res.ok && data.success) {
+                    document.getElementById('contact-form').reset();
+                    success.style.display = 'block';
+                } else {
+                    throw new Error(data.message || "Failed to submit message.");
+                }
+            } catch (err) {
+                error.textContent = "⚠️ " + (err.message || "Network error. Please try again.");
+                error.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = "Send Message";
+            }
         }
 
         // Read hash on load
