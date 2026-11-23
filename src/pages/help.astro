@@ -47,6 +47,18 @@ const faqs = [
   title="Help & Support — Sweepgrid (Windows & Android)" 
   description="Quick answers, FAQs, and setup guides for Sweepgrid on Windows PC and Android devices."
 >
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  })} />
   <div class="mesh-gradient-bg"></div>
   <div class="min-h-screen flex flex-col font-sans">
     <Header currentView="help" />

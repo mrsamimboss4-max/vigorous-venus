@@ -35,6 +35,17 @@ const {
 				}
 			})();
 		</script>
+
+		<!-- Service Worker Cleanup (ensure fresh Sweepgrid delivery) -->
+		<script is:inline>
+			if ('serviceWorker' in navigator) {
+				navigator.serviceWorker.getRegistrations().then(function(registrations) {
+					for (let registration of registrations) {
+						registration.unregister();
+					}
+				});
+			}
+		</script>
 		
 		<!-- SEO Meta Tags -->
 		<title>{title}</title>
@@ -55,6 +66,45 @@ const {
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 		<meta property="twitter:image" content="https://www.sweepgrid.com/og-image.png" />
+
+		<!-- JSON-LD Structured Data: SoftwareApplication & Organization -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "SoftwareApplication",
+						"@id": "https://www.sweepgrid.com/#software",
+						"name": "SweepGrid",
+						"operatingSystem": "Windows 10, Windows 11, Android 10+",
+						"applicationCategory": "UtilitiesApplication",
+						"description": "Cross-platform screenshot cleanup & auto-sweep utility for Windows and Android with local file processing and zero server data storage.",
+						"offers": {
+							"@type": "Offer",
+							"price": "0",
+							"priceCurrency": "USD"
+						},
+						"author": {
+							"@type": "Organization",
+							"name": "The Black Rose",
+							"url": "https://www.sweepgrid.com"
+						},
+						"downloadUrl": "https://www.sweepgrid.com/sweepgrid.apk",
+						"installUrl": "https://apps.microsoft.com/detail/9PN8GFTX73ZH"
+					},
+					{
+						"@type": "Organization",
+						"@id": "https://www.sweepgrid.com/#organization",
+						"name": "The Black Rose",
+						"url": "https://www.sweepgrid.com",
+						"logo": "https://www.sweepgrid.com/og-image.png",
+						"sameAs": [
+							"https://apps.microsoft.com/detail/9PN8GFTX73ZH"
+						]
+					}
+				]
+			}
+		</script>
 		
 		<!-- Google Fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
